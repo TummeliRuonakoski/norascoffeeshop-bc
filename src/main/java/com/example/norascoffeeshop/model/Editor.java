@@ -1,5 +1,8 @@
 package com.example.norascoffeeshop.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -18,4 +21,7 @@ public class Editor  extends AbstractPersistable<Long> {
     private String name;
     private String contactperson;
     private String contactpersonsEmail;
+
+    private List<Product> products = new ArrayList<>();
+
 }

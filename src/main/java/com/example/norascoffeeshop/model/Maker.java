@@ -1,4 +1,6 @@
 package com.example.norascoffeeshop.model;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 
@@ -17,4 +19,8 @@ public class Maker  extends AbstractPersistable<Long>{
     
     private String name;
     private String url;
+
+    private List<Product> products = new ArrayList<>();
+
+
 }
