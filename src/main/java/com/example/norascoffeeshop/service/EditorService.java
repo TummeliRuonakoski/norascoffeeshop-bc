@@ -34,6 +34,11 @@ public class EditorService {
     }
 
     public void updateEditor(Long id, String name, String contactperson, String contactpersonsEmail){
+        Editor editor = editorRepository.getById(id);
+        editor.setName(name);
+        editor.setContactperson(contactperson);
+        editor.setContactpersonsEmail(contactpersonsEmail);
+        editorRepository.save(editor);
     }
     public void deleteEditor(Long id){
         editorRepository.deleteById(id);
