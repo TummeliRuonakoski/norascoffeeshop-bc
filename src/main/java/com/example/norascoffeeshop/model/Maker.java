@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -20,6 +21,7 @@ public class Maker  extends AbstractPersistable<Long>{
     private String name;
     private String url;
 
+    @OneToMany
     private List<Product> products = new ArrayList<>();
 
 
