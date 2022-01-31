@@ -2,7 +2,6 @@ package com.example.norascoffeeshop.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import com.example.norascoffeeshop.model.Editor;
 import com.example.norascoffeeshop.repository.EditorRepository;
