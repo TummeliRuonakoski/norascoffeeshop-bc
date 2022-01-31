@@ -31,11 +31,12 @@ public class ProtuctService {
         productRepository.save(product);
     }
 
-    public void updateProduct(Long id, String name, String description, Double price, String image){
+    public void updateProduct(Long id, String name, String description, Double price, String image, Long productsSold){
         Product product = productRepository.getById(id);
         product.setDescription(description);
         product.setPrice(price);
         product.setImage(image);
+        product.setProductsSold(productsSold);
         productRepository.save(product);
     }
     public void deleteProduct(Long id){
