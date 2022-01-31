@@ -18,11 +18,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getEditor(Long id){
+    public User getUser(Long id){
         return userRepository.getById(id);
     }
 
-    public void addMaker(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
+    public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
         User user = new User(); 
         user.setName(name);
         user.setAddress(address);
@@ -33,7 +33,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateMaker(Long id, String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
+    public void updateUser(Long id, String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
         User user = userRepository.getById(id);
         user.setName(name);
         user.setAddress(address);
@@ -44,7 +44,7 @@ public class UserService {
         userRepository.save(user);
     }
     
-    public void deleteEditor(Long id){
+    public void deleteUser(Long id){
         userRepository.deleteById(id);
     }
 

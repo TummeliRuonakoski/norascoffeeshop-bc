@@ -19,24 +19,24 @@ public class DeparmentService {
         return deparmentRepository.findAll();
     }
 
-    public Deparment getEditor(Long id){
+    public Deparment getDeparment(Long id){
         return deparmentRepository.getById(id);
     }
 
-    public void addMaker(String name, Long derarmentId){
+    public void addDeparment(String name, Long derarmentId){
         Deparment deparment = new Deparment();
         deparment.setName(name);
         deparment.setDerarmentId(derarmentId);
         deparmentRepository.save(deparment);
     }
 
-    public void updateMaker(Long id, String name, Long derarmentId){
+    public void updateDeparment(Long id, String name, Long derarmentId){
         Deparment deparment = deparmentRepository.getById(id);
         deparment.setName(name);
         deparment.setDerarmentId(derarmentId);
         deparmentRepository.save(deparment);
     }
-    public void deleteEditor(Long id){
+    public void deleteDeparment(Long id){
         deparmentRepository.deleteById(id);
     }
 

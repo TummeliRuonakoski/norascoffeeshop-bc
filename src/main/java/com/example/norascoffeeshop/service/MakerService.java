@@ -18,7 +18,7 @@ public class MakerService {
         return makerRepository.findAll();
     }
 
-    public Maker getEditor(Long id){
+    public Maker getMaker(Long id){
         return makerRepository.getById(id);
     }
 
@@ -35,7 +35,7 @@ public class MakerService {
         maker.setUrl(url);
         makerRepository.save(maker);
     }
-    public void deleteEditor(Long id){
+    public void deleteMaker(Long id){
         makerRepository.deleteById(id);
     }
 

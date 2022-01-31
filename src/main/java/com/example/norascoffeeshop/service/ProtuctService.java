@@ -18,11 +18,11 @@ public class ProtuctService {
         return productRepository.findAll();
     }
 
-    public Product getEditor(Long id){
+    public Product getProduct(Long id){
         return productRepository.getById(id);
     }
 
-    public void addMaker(String name, String description, Double price, String image){
+    public void addProduct(String name, String description, Double price, String image){
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
@@ -31,14 +31,14 @@ public class ProtuctService {
         productRepository.save(product);
     }
 
-    public void updateMaker(Long id, String name, String description, Double price, String image){
+    public void updateProduct(Long id, String name, String description, Double price, String image){
         Product product = productRepository.getById(id);
         product.setDescription(description);
         product.setPrice(price);
         product.setImage(image);
         productRepository.save(product);
     }
-    public void deleteEditor(Long id){
+    public void deleteProduct(Long id){
         productRepository.deleteById(id);
     }
     

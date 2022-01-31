@@ -27,4 +27,6 @@ public class Product  extends AbstractPersistable<Long>{
     private Editor editor;
     @ManyToOne
     private Maker maker;
+    private Long productsSold;
+
 }
