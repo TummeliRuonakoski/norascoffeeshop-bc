@@ -8,7 +8,13 @@
     </head>
     <body>
         <section th:replace="fragments/layout :: banner"></section>
-        <h1>Admin page</h1>
+        <section>
+            <h1>Admin page</h1>
+        </section>
+        <section class="addProduct">
+            <h2>Add a new product</h2>
+            <form th:action="@{/}"></form>
+        </section>
         
 
         <section th:replace="fragments/layout :: footer"></section> 

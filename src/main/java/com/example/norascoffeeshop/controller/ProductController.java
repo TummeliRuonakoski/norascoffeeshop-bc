@@ -64,19 +64,19 @@ public class ProductController {
         return "product";
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/admin/product")
     public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam String image){
         this.productService.addProduct(name, description, price, image, 0L);
         return "redirect:/admin";
     }
 
-    @PostMapping("/product/{id}")
+    @PostMapping("/admin/product/{id}")
     public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam String image, Long productsSold){
         this.productService.updateProduct(id, name, description, price, image, productsSold);
         return "redirect:/admin";
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/admin/product/{id}")
     public String deleteProduct(@PathVariable Long id){
         this.productService.deleteProduct(id);
         return "redirect:/admin";

@@ -9,6 +9,6 @@ public class DefaultController {
 
     @GetMapping("*")
     public String handleDefault() {
-        return "redirect:/jokes";
+        return "redirect:/index";
     }
 }
