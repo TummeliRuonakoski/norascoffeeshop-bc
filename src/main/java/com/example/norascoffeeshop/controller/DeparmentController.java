@@ -13,10 +13,10 @@ public class DeparmentController {
     @Autowired
     private DeparmentService deparmentService;
 
-    @GetMapping("/")
+    @GetMapping("/admin/deparment")
     public String list(Model model){
-        
-        return "index";
+        model.addAttribute("deparment", deparmentService.listAll());
+        return "admin";
     }
     
 }

@@ -20,6 +20,21 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
+    public List<Product> getAllCoffeeMachines(List<Long> coffeemachines){
+        List<Product> products = productRepository.findByDeparment_idIn(coffeemachines);
+        return products;
+    }
+
+    public List<Product> getAllConsumeProducts(List<Long> consumerproducts){
+        List<Product> products = productRepository.findByDeparment_idIn(consumerproducts);
+        return products;
+    }
+
+    public List<Product> getAllCoffees(List<Long> coffees){
+        List<Product> products = productRepository.findByDeparment_idIn(coffees);
+        return products;
+    }
+
     public List<Product> listAll(){
         return productRepository.findAll();
     }

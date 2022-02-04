@@ -43,7 +43,4 @@ public class EditorService {
         editorRepository.deleteById(id);
     }
 
-    
-
-
 }

@@ -23,21 +23,5 @@ public class DeparmentService {
         return deparmentRepository.getById(id);
     }
 
-    public void addDeparment(String name, Long derarmentId){
-        Deparment deparment = new Deparment();
-        deparment.setName(name);
-        deparment.setDerarmentId(derarmentId);
-        deparmentRepository.save(deparment);
-    }
-
-    public void updateDeparment(Long id, String name, Long derarmentId){
-        Deparment deparment = deparmentRepository.getById(id);
-        deparment.setName(name);
-        deparment.setDerarmentId(derarmentId);
-        deparmentRepository.save(deparment);
-    }
-    public void deleteDeparment(Long id){
-        deparmentRepository.deleteById(id);
-    }
 
 }
