@@ -11,4 +11,9 @@ public class DefaultController {
     public String handleDefault() {
         return "redirect:/index";
     }
+
+    @GetMapping("/index")
+    public String getIndexPage() {
+        return "index";
+    }
 }

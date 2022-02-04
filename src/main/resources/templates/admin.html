@@ -12,8 +12,38 @@
             <h1>Admin page</h1>
         </section>
         <section class="addProduct">
-            <h2>Add a new product</h2>
-            <form th:action="@{/}"></form>
+            <form th:action="@{/admin/product}" method="post">            
+                <h2>Add a new product</h2>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingProductName" name="productname" placeholder="the name of the product">
+                    <label for="floatingProductName">The name on the product</label>
+                </div>
+                <div class="form-floating">
+                    <textarea name="description" id="floatingDescription" class="form-control" rows="3" placeholder="description">Description</textarea>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingPrice" name="price" placeholder="Product price">
+                    <label for="floatingPrice">Product price</label>
+                </div>
+                <div class="form-floating">                    
+                    <select class="form-select" name="deparmentId">
+                        <option selected>Deparments</option>
+                        <option th:each="deparment : ${deparments}" th:text="${deparment.name}" th:value="${deparment.id}">deparments</option>
+                    </select>
+                </div>
+                <div class="form-floating">
+                    <select class="form-select" name="editorId">
+                        <option selected>Editor</option>
+                        <option th:each="editor : ${editors}" th:text="${editor.name}" th:value="${editor.id}">editors</option>
+                    </select>
+                </div>
+                <div class="form-floating">
+                    <select class="form-select" name="makerId">
+                        <option selected>makers</option>
+                        <option th:each="maker : ${makers}" th:text="${maker.name}" th:value="${maker.id}">makers</option>
+                    </select>
+                </div>
+            </form>
         </section>
         
 
