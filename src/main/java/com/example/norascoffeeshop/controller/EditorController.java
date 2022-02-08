@@ -41,11 +41,10 @@ public class EditorController {
         return "redirect:/editor";
     }
 
-    @DeleteMapping("admin/editro/{id}")
+    @DeleteMapping("admin/editor/{id}")
     public String deleteEditor(@PathVariable Long id){
         this.editorService.deleteEditor(id);
         return "redirect:/admin";
     }
-
 
 }

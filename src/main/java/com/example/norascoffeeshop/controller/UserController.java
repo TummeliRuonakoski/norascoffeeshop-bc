@@ -26,7 +26,7 @@ public class UserController {
     @PostMapping("/")
     public String createUser(@RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password, @RequestParam Boolean isAdmin){
         this.userService.addUser(name, address, phonenumber, email, password, isAdmin);
-        return "redirect:/";
+        return "redirect:/index";
     }
 
     @PostMapping("/user/{id}")
