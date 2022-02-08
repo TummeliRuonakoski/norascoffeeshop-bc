@@ -18,23 +18,35 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Autowired
     private UserDetailsService userDetailsService;
 
+    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+
+        http.csrf().disable();
+        http.headers().frameOptions().sameOrigin();
+
         http.authorizeRequests()
         .antMatchers("/index").permitAll()
         .antMatchers("/product/*").permitAll()
         .antMatchers("/consumerproducts", "/consumerproducts/*").permitAll()
         .antMatchers("/coffeemachines", "/coffeemachines/*").permitAll()
+        .antMatchers("/h2-console","/h2-console/**").permitAll() 
         .antMatchers("/admin", "/admin/*").hasAnyAuthority("ADMIN")
         .anyRequest().authenticated().and()
         .formLogin().loginPage("/login").permitAll().and()
         .logout().permitAll();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+    // @Autowired
+    // public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    //     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    // }
+
+    // @Bean
+    // public PasswordEncoder passwordEncoder(){
+    //     return new BCryptPasswordEncoder();
+    // }
 
     
 }
