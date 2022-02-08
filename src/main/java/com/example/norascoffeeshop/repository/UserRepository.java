@@ -1,11 +1,11 @@
 package com.example.norascoffeeshop.repository;
 
-import com.example.norascoffeeshop.model.User;
+import com.example.norascoffeeshop.model.UserData;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<UserData, Long>{
 
-    User findByEmail(String email);
+    UserData findByEmail(String email);
     
 }

@@ -1,8 +1,6 @@
 package com.example.norascoffeeshop.service;
 
-import java.util.List;
-
-import com.example.norascoffeeshop.model.User;
+import com.example.norascoffeeshop.model.UserData;
 import com.example.norascoffeeshop.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +13,12 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public User getUser(Long id){
+    public UserData getUser(Long id){
         return userRepository.getById(id);
     }
 
     public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
-        User user = new User(); 
+        UserData user = new UserData(); 
         user.setName(name);
         user.setAddress(address);
         user.setPhonenumber(phonenumber);
@@ -31,7 +29,7 @@ public class UserService {
     }
 
     public void updateUser(Long id, String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
-        User user = userRepository.getById(id);
+        UserData user = userRepository.getById(id);
         user.setName(name);
         user.setAddress(address);
         user.setPhonenumber(phonenumber);

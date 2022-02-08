@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User  extends AbstractPersistable<Long>{
+public class UserData  extends AbstractPersistable<Long>{
     
     private String name;
     private String address;
@@ -24,5 +24,4 @@ public class User  extends AbstractPersistable<Long>{
     private String email;
     private String password;
     private Boolean isAdmin;
-    private boolean accountVerified;
 }

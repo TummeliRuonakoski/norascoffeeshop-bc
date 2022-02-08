@@ -2,7 +2,7 @@ package com.example.norascoffeeshop.config;
 
 import java.util.Arrays;
 
-import com.example.norascoffeeshop.model.User;
+import com.example.norascoffeeshop.model.UserData;
 import com.example.norascoffeeshop.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User customer = userRepository.findByEmail(email);
+        UserData customer = userRepository.findByEmail(email);
         if(customer == null){
             throw new UsernameNotFoundException("No such user " + email);
         }
