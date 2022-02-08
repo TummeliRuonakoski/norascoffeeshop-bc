@@ -24,4 +24,5 @@ public class User  extends AbstractPersistable<Long>{
     private String email;
     private String password;
     private Boolean isAdmin;
+    private boolean accountVerified;
 }
