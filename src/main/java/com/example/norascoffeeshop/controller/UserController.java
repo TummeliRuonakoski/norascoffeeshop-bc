@@ -23,9 +23,14 @@ public class UserController {
         return "profile";
     }
 
-    @PostMapping("/")
-    public String createUser(@RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password, @RequestParam Boolean isAdmin){
-        this.userService.addUser(name, address, phonenumber, email, password, isAdmin);
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @PostMapping("/register")
+    public String createUser(@RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password){
+        this.userService.addUser(name, address, phonenumber, email, password, false);
         return "redirect:/index";
     }
 

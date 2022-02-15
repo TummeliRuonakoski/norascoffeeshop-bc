@@ -12,7 +12,7 @@
 
         <section>
             <h5>Welcome back!</h5>
-            <form action="">
+            <form method="post" th:action="@{/login}">
                 <div class="form-floating">
                     <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Your e-mail">
                     <label for="floatingInput">Email address</label>
@@ -21,9 +21,9 @@
                     <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Your password">
                     <label for="floatingPassword">Password</label>
                 </div>
-                <div><a href="#">Forgot your password?</a></div>
                 <button type="submit">Login</button>
-                <div>Need an account? <a href="#">Register</a></div>
+                <div><a href="./forgotPassword.html">Forgot your password?</a></div>
+                <div>Need an account? <a href="./register.html">Register</a></div>
             </form>
         </section>
 

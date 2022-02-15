@@ -12,35 +12,28 @@
 
         <section>
             <h5>My info</h5>
-            <form action="">
+            <form th:action="@{/register}" method="post">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingFirstName" name="fname" placeholder="Your first name">
+                    <input type="text" class="form-control" id="floatingFirstName" name="name" placeholder="Your firstname lastname">
                     <label for="floatingFirstName">First name</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingLastName" name="lname" placeholder="Your last name">
-                    <label for="floatingLastName">Last name</label>
+                    <input type="text" class="form-control" id="floatingStreet" name="adress" placeholder="Your street address (street postcode city)">
+                    <label for="floatingStreet">Adress</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingStreet" name="street" placeholder="Your street address">
-                    <label for="floatingStreet">Street address</label>
+                    <input type="text" class="form-control" id="floatingNumber" name="phonenumber" placeholder="Your phonenumber">
+                    <label for="floatingStreet">Phonenumber</label>
                 </div>
-                <div class="form-floating">
-                    <input type="number" class="form-control" id="floatingPostCode" name="post" placeholder="Your post code">
-                    <label for="floatingPostCode">Post code</label>
-                </div>
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingCity" name="city" placeholder="Your city">
-                    <label for="floatingCity">City</label>
-                </div>
+
                 <div class="form-floating">
                     <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Your e-mail">
                     <label for="floatingInput">Email address</label>
                 </div>
-                <div class="form-floating">
+                <!-- <div class="form-floating">
                     <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Once more">
                     <label for="floatingInput">Once more</label>
-                </div>
+                </div> -->
                 <div class="form-floating">
                     <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Your password">
                     <label for="floatingPassword">Password</label>

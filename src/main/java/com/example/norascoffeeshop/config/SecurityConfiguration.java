@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     
 
@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.headers().frameOptions().sameOrigin();
 
         http.authorizeRequests()
+        .antMatchers("/register", "/forgotpassword").permitAll()
         .antMatchers("/index").permitAll()
         .antMatchers("/product/*").permitAll()
         .antMatchers("/consumerproducts", "/consumerproducts/*").permitAll()
@@ -43,10 +44,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     //     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     // }
 
-    // @Bean
-    // public PasswordEncoder passwordEncoder(){
-    //     return new BCryptPasswordEncoder();
-    // }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     
 }
