@@ -77,7 +77,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void updateProduct(Long id, String name, String description, Double price, Long productsSold, Long deparmentId, Long editorId, Long makerId){
+    public void updateProduct(Long id, String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long editorId, Long makerId) throws IOException {
         Product product = productRepository.getById(id);
         Deparment deparment = deparmentRepository.getById(deparmentId);
         Editor editor = editorRepository.getById(editorId);
@@ -85,6 +85,7 @@ public class ProductService {
         product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
+        product.setImage(image.getBytes());
         product.setProductsSold(productsSold);
         product.setDeparment(deparment);
         product.setEditor(editor);

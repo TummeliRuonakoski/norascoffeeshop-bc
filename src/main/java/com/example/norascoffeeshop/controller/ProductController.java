@@ -72,8 +72,8 @@ public class ProductController {
     }
 
     @PostMapping("/admin/product/{id}")
-    public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, Long productsSold, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId){
-        this.productService.updateProduct(id, name, description, price, productsSold, deparmentId, editorId, makerId);
+    public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam ("image") MultipartFile image, Long productsSold, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId) throws IOException {
+        this.productService.updateProduct(id, name, description, price, image, productsSold, deparmentId, editorId, makerId);
         return "redirect:/admin";
     }
 
