@@ -1,5 +1,6 @@
 package com.example.norascoffeeshop.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -64,8 +66,8 @@ public class ProductController {
     }
 
     @PostMapping("/admin/product")
-    public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId){
-        this.productService.addProduct(name, description, price, 0L, deparmentId, editorId, makerId);
+    public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam("image") MultipartFile image, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId) throws IOException{
+        this.productService.addProduct(name, description, price, image, 0L, deparmentId, editorId, makerId);
         return "redirect:/admin";
     }
 

@@ -1,5 +1,6 @@
 package com.example.norascoffeeshop.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.example.norascoffeeshop.model.Deparment;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProductService {
@@ -59,7 +61,7 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
-    public void addProduct(String name, String description, Double price, Long productsSold, Long deparmentId, Long editorId, Long makerId){
+    public void addProduct(String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long editorId, Long makerId) throws IOException {
         Deparment deparment = deparmentRepository.getById(deparmentId);
         Editor editor = editorRepository.getById(editorId);
         Maker maker = makerRepository.getById(makerId);
@@ -67,6 +69,7 @@ public class ProductService {
         product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
+        product.setImage(image.getBytes());
         product.setProductsSold(productsSold);
         product.setDeparment(deparment);
         product.setEditor(editor);
