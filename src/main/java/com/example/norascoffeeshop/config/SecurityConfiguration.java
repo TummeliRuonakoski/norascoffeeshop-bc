@@ -32,7 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         .antMatchers("/consumerproducts", "/consumerproducts/*").permitAll()
         .antMatchers("/coffeemachines", "/coffeemachines/*").permitAll()
         .antMatchers("/h2-console","/h2-console/**").permitAll() 
-        .antMatchers("/admin", "/admin/*").hasAnyAuthority("ADMIN")
+        .antMatchers("/admin", "/admin/*").permitAll()
+        // .antMatchers("/admin", "/admin/*").hasAnyAuthority("ADMIN")
         .anyRequest().authenticated().and()
         .formLogin().loginPage("/login").permitAll().and()
         .logout().permitAll();
