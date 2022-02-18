@@ -3,6 +3,8 @@ package com.example.norascoffeeshop.controller;
 import com.example.norascoffeeshop.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,15 +19,24 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/{id}")
-    public String getUser(@PathVariable Long id, Model model){
-        model.addAttribute("user", this.userService.getUser(id));
+    @GetMapping("/user")
+    public String getUser(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        System.out.print("\n" + "!!!!!!!!!!!!! " + username + " !!!!!!!!!!!!!!!!" + "\n");
+        model.addAttribute("user", username);
+        // model.addAttribute("user", this.userService.getUser(id));
         return "profile";
     }
 
     @GetMapping("/login")
     public String login(){
         return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        return "register";
     }
 
     @PostMapping("/register")
