@@ -24,10 +24,11 @@ public class UserService {
     public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
         UserData user = new UserData(); 
         user.setName(name);
+        user.setUsername(email);
         user.setAddress(address);
         user.setPhonenumber(phonenumber);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setIsAdmin(isAdmin);
         userRepository.save(user);
     }

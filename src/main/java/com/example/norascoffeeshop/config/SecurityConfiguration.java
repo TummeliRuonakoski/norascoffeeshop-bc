@@ -25,19 +25,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
 
         http.csrf().disable();
-        // http.headers().frameOptions().sameOrigin();
+        http.headers().frameOptions().sameOrigin();
 
         http.authorizeRequests()
         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-        // .antMatchers("/**").permitAll()
-        .antMatchers("/register", "/forgotpassword", "/index").permitAll()
+        .antMatchers("/h2-console","/h2-console/**").permitAll() 
+        .antMatchers("/", "/register", "/forgotpassword", "/index").permitAll()
         .antMatchers("/product/*").permitAll()
         .antMatchers("/consumerproducts", "/consumerproducts/*").permitAll()
         .antMatchers("/coffeemachines", "/coffeemachines/*").permitAll()
-        .antMatchers("/h2-console","/h2-console/**").permitAll() 
         .antMatchers("/admin", "/admin/*").hasAnyAuthority("ADMIN")
         .anyRequest().authenticated().and()
-        .formLogin().loginPage("/login").permitAll().and()
+        .formLogin().loginPage("/login")
+        .defaultSuccessUrl("/index", true)
+        .permitAll()
+        .and()
         .logout().permitAll();
     }
 
