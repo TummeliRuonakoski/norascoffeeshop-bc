@@ -4,6 +4,7 @@ import com.example.norascoffeeshop.model.UserData;
 import com.example.norascoffeeshop.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,9 @@ public class UserService {
     
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     public UserData getUser(Long id){
@@ -20,10 +24,11 @@ public class UserService {
     public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
         UserData user = new UserData(); 
         user.setName(name);
+        user.setUsername(email);
         user.setAddress(address);
         user.setPhonenumber(phonenumber);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setIsAdmin(isAdmin);
         userRepository.save(user);
     }
@@ -34,7 +39,7 @@ public class UserService {
         user.setAddress(address);
         user.setPhonenumber(phonenumber);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setIsAdmin(isAdmin);
         userRepository.save(user);
     }

@@ -1,6 +1,7 @@
 package com.example.norascoffeeshop.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,12 +12,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
+// @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     
 
@@ -27,27 +28,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.headers().frameOptions().sameOrigin();
 
         http.authorizeRequests()
-        .antMatchers("/index").permitAll()
+        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+        .antMatchers("/h2-console","/h2-console/**").permitAll() 
+        .antMatchers("/", "/register", "/forgotpassword", "/index").permitAll()
         .antMatchers("/product/*").permitAll()
         .antMatchers("/consumerproducts", "/consumerproducts/*").permitAll()
         .antMatchers("/coffeemachines", "/coffeemachines/*").permitAll()
-        .antMatchers("/h2-console","/h2-console/**").permitAll() 
-        .antMatchers("/admin", "/admin/*").permitAll()
-        // .antMatchers("/admin", "/admin/*").hasAnyAuthority("ADMIN")
+        .antMatchers("/admin", "/admin/*").hasAnyAuthority("ADMIN")
         .anyRequest().authenticated().and()
-        .formLogin().loginPage("/login").permitAll().and()
+        .formLogin().loginPage("/login")
+        .defaultSuccessUrl("/index", true)
+        .permitAll()
+        .and()
         .logout().permitAll();
     }
 
-    // @Autowired
-    // public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    //     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    // }
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
-    // @Bean
-    // public PasswordEncoder passwordEncoder(){
-    //     return new BCryptPasswordEncoder();
-    // }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     
 }
