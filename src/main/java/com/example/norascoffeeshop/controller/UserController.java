@@ -3,6 +3,8 @@ package com.example.norascoffeeshop.controller;
 import com.example.norascoffeeshop.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,15 +19,33 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/{id}")
-    public String getUser(@PathVariable Long id, Model model){
-        model.addAttribute("user", this.userService.getUser(id));
+    @GetMapping("/user")
+    public String getUser(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        model.addAttribute("user", username);
         return "profile";
     }
 
-    @PostMapping("/")
-    public String createUser(@RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password, @RequestParam Boolean isAdmin){
-        this.userService.addUser(name, address, phonenumber, email, password, isAdmin);
+    @GetMapping("/user/{name}")
+    public String getUserData(Model model, @PathVariable String name){
+        model.addAttribute("userdata", userService.getUser(name));
+        return "profile";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String createUser(@RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password){
+        this.userService.addUser(name, address, phonenumber, email, password, false);
         return "redirect:/index";
     }
 

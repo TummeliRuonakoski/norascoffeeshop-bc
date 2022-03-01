@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class UserData  extends AbstractPersistable<Long>{
     
     private String name;
+    private String username;
     private String address;
     private String phonenumber;
     @Column(unique = true)

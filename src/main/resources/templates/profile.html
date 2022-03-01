@@ -1,48 +1,105 @@
 <section th:replace="fragments/layout :: banner"></section>
 
+<!-- th:action="@{/user/(name=${userdata.name})}" method="get" -->
 <section class="user">
-
+    <h1>Userpage</h1>
+  <section th:each="user: ${userdata}">
+    <h1 th:text="${user.name}">user</h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>address</td>
+                <td th:text="${user.address}">address</td>
+            </tr>
+            <tr>
+                <td>phonenumber</td>
+                <td th:text="${user.phonenumber}"></td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td th:text="${user.email}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="changeUserData" type="submit">Change userdata</button>
 </section>
-
+</section>
 
 <section class="admin" sec:authorize="hasAuthority('ADMIN')">
-    <h2>Only for admins</h2>
+  <h2>Only for admins</h2>
 
-    <section class="addProduct">
-        <form th:action="@{/admin/product}" method="post">            
-            <h2>Add a new product</h2>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingProductName" name="productname" placeholder="the name of the product">
-                <label for="floatingProductName">The name on the product</label>
-            </div>
-            <div class="form-floating">
-                <textarea name="description" id="floatingDescription" class="form-control" rows="3" placeholder="description">Description</textarea>
-            </div>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingPrice" name="price" placeholder="Product price">
-                <label for="floatingPrice">Product price</label>
-            </div>
-            <div class="form-floating">                    
-                <select class="form-select" name="deparmentId">
-                    <option selected>Deparments</option>
-                    <option th:each="deparment : ${deparments}" th:text="${deparment.name}" th:value="${deparment.id}">deparments</option>
-                </select>
-            </div>
-            <div class="form-floating">
-                <select class="form-select" name="editorId">
-                    <option selected>Editor</option>
-                    <option th:each="editor : ${editors}" th:text="${editor.name}" th:value="${editor.id}">editors</option>
-                </select>
-            </div>
-            <div class="form-floating">
-                <select class="form-select" name="makerId">
-                    <option selected>makers</option>
-                    <option th:each="maker : ${makers}" th:text="${maker.name}" th:value="${maker.id}">makers</option>
-                </select>
-            </div>
-        </form>
-    </section>
-
+  <section class="addProduct">
+    <form th:action="@{/admin/product}" method="post">
+      <h2>Add a new product</h2>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingProductName"
+          name="productname"
+          placeholder="the name of the product"
+        />
+        <label for="floatingProductName">The name on the product</label>
+      </div>
+      <div class="form-floating">
+        <textarea
+          name="description"
+          id="floatingDescription"
+          class="form-control"
+          rows="3"
+          placeholder="description"
+        >
+Description</textarea
+        >
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingPrice"
+          name="price"
+          placeholder="Product price"
+        />
+        <label for="floatingPrice">Product price</label>
+      </div>
+      <div class="form-floating">
+        <select class="form-select" name="deparmentId">
+          <option selected>Deparments</option>
+          <option
+            th:each="deparment : ${deparments}"
+            th:text="${deparment.name}"
+            th:value="${deparment.id}"
+          >
+            deparments
+          </option>
+        </select>
+      </div>
+      <div class="form-floating">
+        <select class="form-select" name="editorId">
+          <option selected>Editor</option>
+          <option
+            th:each="editor : ${editors}"
+            th:text="${editor.name}"
+            th:value="${editor.id}"
+          >
+            editors
+          </option>
+        </select>
+      </div>
+      <div class="form-floating">
+        <select class="form-select" name="makerId">
+          <option selected>makers</option>
+          <option
+            th:each="maker : ${makers}"
+            th:text="${maker.name}"
+            th:value="${maker.id}"
+          >
+            makers
+          </option>
+        </select>
+      </div>
+    </form>
+  </section>
 </section>
 
-<section th:replace="fragments/layout :: footer"></section> 
+<section th:replace="fragments/layout :: footer"></section>
