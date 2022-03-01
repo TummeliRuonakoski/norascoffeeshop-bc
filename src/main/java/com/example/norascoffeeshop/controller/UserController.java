@@ -23,15 +23,15 @@ public class UserController {
     public String getUser(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        model.addAttribute("user", username);
+        model.addAttribute("userdata", userService.getUser(username));
         return "profile";
     }
 
-    @GetMapping("/user/{name}")
-    public String getUserData(Model model, @PathVariable String name){
-        model.addAttribute("userdata", userService.getUser(name));
-        return "profile";
-    }
+    // @GetMapping("/user/{name}")
+    // public String getUserData(Model model, @PathVariable String name){
+    //     model.addAttribute("userdata", userService.getUser(name));
+    //     return "profile";
+    // }
 
     @GetMapping("/login")
     public String login(){
