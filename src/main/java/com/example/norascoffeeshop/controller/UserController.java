@@ -27,12 +27,6 @@ public class UserController {
         return "profile";
     }
 
-    // @GetMapping("/user/{name}")
-    // public String getUserData(Model model, @PathVariable String name){
-    //     model.addAttribute("userdata", userService.getUser(name));
-    //     return "profile";
-    // }
-
     @GetMapping("/login")
     public String login(){
         return "login";
