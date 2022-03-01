@@ -23,9 +23,7 @@ public class UserController {
     public String getUser(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        System.out.print("\n" + "!!!!!!!!!!!!! " + username + " !!!!!!!!!!!!!!!!" + "\n");
         model.addAttribute("user", username);
-        // model.addAttribute("user", this.userService.getUser(id));
         return "profile";
     }
 
