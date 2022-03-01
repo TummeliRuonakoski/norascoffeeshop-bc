@@ -17,8 +17,8 @@ public class UserService {
     PasswordEncoder passwordEncoder;
 
 
-    public UserData getUser(Long id){
-        return userRepository.getById(id);
+    public UserData getUser(String email){
+        return userRepository.findByEmail(email);
     }
 
     public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){

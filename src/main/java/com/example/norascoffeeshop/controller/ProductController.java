@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -65,22 +66,25 @@ public class ProductController {
         return "product";
     }
 
-    @PostMapping("/admin/product")
+    @Secured("ADMIN")
+    @PostMapping("/user/admin/product")
     public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam("image") MultipartFile image, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId) throws IOException{
         this.productService.addProduct(name, description, price, image, 0L, deparmentId, editorId, makerId);
-        return "redirect:/admin";
+        return "redirect:/profile";
     }
 
-    @PostMapping("/admin/product/{id}")
+    @Secured("ADMIN")
+    @PostMapping("/user/admin/product/{id}")
     public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam ("image") MultipartFile image, Long productsSold, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId) throws IOException {
         this.productService.updateProduct(id, name, description, price, image, productsSold, deparmentId, editorId, makerId);
-        return "redirect:/admin";
+        return "redirect:/profile";
     }
 
-    @DeleteMapping("/admin/product/{id}")
+    @Secured("ADMIN")
+    @DeleteMapping("/user/admin/product/{id}")
     public String deleteProduct(@PathVariable Long id){
         this.productService.deleteProduct(id);
-        return "redirect:/admin";
+        return "redirect:/profile";
     }
 
 }
