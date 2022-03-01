@@ -37,6 +37,17 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/forgotpassword")
+    public String forgotPassword(){
+        return "forgotpassword";
+    }
+
+    @PostMapping("/forgotpassword")
+    public String resetPassword(@RequestParam String email, @RequestParam String password) {
+        this.userService.resetPassword(email, password);
+        return "redirect:/login";
+    }
+
     @PostMapping("/register")
     public String createUser(@RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password){
         this.userService.addUser(name, address, phonenumber, email, password, false);
