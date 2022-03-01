@@ -39,7 +39,6 @@ public class UserService {
         user.setAddress(address);
         user.setPhonenumber(phonenumber);
         user.setEmail(email);
-        // user.setPassword(passwordEncoder.encode(password));
         user.setIsAdmin(isAdmin);
         userRepository.save(user);
     }
