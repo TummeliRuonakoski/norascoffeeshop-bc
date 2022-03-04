@@ -21,7 +21,7 @@ public class MakerController {
     @GetMapping("/user/admin/maker")
     public String getAllMakers(Model model){
         model.addAttribute("makers", this.makerService.listAll());
-        return "profile";
+        return "postmaker";
     }
 
     @GetMapping("/user/admin/maker/{id}")

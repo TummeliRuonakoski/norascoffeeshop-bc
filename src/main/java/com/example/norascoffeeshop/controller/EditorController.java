@@ -21,13 +21,13 @@ public class EditorController {
     @GetMapping("/user/admin/editor")
     public String getAllEditors(Model model){
         model.addAttribute("editors", this.editorService.listAll());
-        return "profile";
+        return "postsupplier";
     }
 
     @GetMapping("/user/admin/editor/{id}")
     public String getEditor(@PathVariable Long id, Model model){
         model.addAttribute("editor", this.editorService.getEditor(id));
-        return "editor";
+        return "supplier";
     }
 
     @Secured("ADMIN")
