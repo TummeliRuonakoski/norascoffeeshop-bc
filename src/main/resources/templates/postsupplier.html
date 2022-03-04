@@ -1,1 +1,60 @@
-<h1>Tämä on supplier</h1>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Nora's coffeeshop - suppliers</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/css/layout.css}">
+        <link rel="stylesheet" th:href="@{/css/login.css}">
+        <script src="https://kit.fontawesome.com/e7001ac7fb.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <section th:replace="fragments/layout :: banner"></section>
+
+        <section class="getSuppliers">
+            <h2>Suppliers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Remove</i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="supplier : ${suppliers}">
+                        <td th:text="${supplier.name}"></td>
+                        <td th:text="${supplier.contactperson}"></td>
+                        <td th:text="${supplier.contactpersonsEmail}"></td>
+                        <td><i class="fa-solid fa-pen"></i></td>
+                        <td><i class="fa-solid fa-trash-can"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="postSupplier">
+
+            <h2>Add a new supplier</h2>
+
+            <form th:action="@{/user/admin/supplier" method="post">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="name" placeholder="The name of the supplier"/>
+                    <label for="floatingSupplierName">The name of the supplier</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="contactperson" placeholder="The name of the contact person"/>
+                    <label for="floatingContactPerson">The contact person</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="contactpersonsEmail" placeholder="The email address of the contact person"/>
+                    <label for="floatingEmail">The contact persons email</label>
+                </div>
+                <input type="submit" value="Add"/>
+            </form>
+        </section>
+
+        <section th:replace="fragments/layout :: footer"></section>
+    </body>
+</html>
