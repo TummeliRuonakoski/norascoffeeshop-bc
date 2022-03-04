@@ -30,22 +30,23 @@ public class MakerController {
         return "maker";
     }
 
-    @Secured("ADMIN")
+    // @Secured("ADMIN")
     @PostMapping("/user/admin/maker")
     public String createMaker(@RequestParam String name, @RequestParam String url){
         this.makerService.addMaker(name, url);
-        return "redirect:/profile";
+        System.out.println("\n"  + "!!!!!!  name: " + name + "  url: " + url +  "!!!!!!" + "\n");
+        return "redirect:/postmaker";
 
     }
 
-    @Secured("ADMIN")
+    // @Secured("ADMIN")
     @PostMapping("/user/admin/maker/{id}")
     public String updateMaker(@PathVariable Long id, @RequestParam String name, @RequestParam String url){
         this.makerService.updateMaker(id, name, url);
         return "redirect:/maker";
     }
 
-    @Secured("ADMIN")
+    // @Secured("ADMIN")
     @DeleteMapping("/user/admin/maker/{id}")
     public String deleteMaker(@PathVariable Long id){
         this.makerService.deleteMaker(id);

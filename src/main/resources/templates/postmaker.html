@@ -1,1 +1,32 @@
 <h1>Tämä on maker</h1>
+
+<section class="getMakers"></section>
+
+<section class="postMaker">
+
+    <h2>Add a new maker</h2>
+
+  <form th:action="@{/user/admin/maker}" method="post">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingMaker"
+        name="name"
+        placeholder="the name of the maker"
+      />
+      <label for="floatingMakerName">The name on the maker</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingUrl"
+        name="url"
+        placeholder="maker url"
+      />
+      <label for="floatingUrl">Url</label>
+    </div>
+    <input type="submit" value="Add"></input>
+  </form>
+</section>
