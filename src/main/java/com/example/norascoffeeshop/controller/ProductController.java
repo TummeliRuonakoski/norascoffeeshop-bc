@@ -68,15 +68,15 @@ public class ProductController {
 
     @Secured("ADMIN")
     @PostMapping("/user/admin/product")
-    public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam("image") MultipartFile image, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId) throws IOException{
-        this.productService.addProduct(name, description, price, image, 0L, deparmentId, editorId, makerId);
+    public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam("image") MultipartFile image, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId) throws IOException{
+        this.productService.addProduct(name, description, price, image, 0L, deparmentId, supplierId, makerId);
         return "redirect:/profile";
     }
 
     @Secured("ADMIN")
     @PostMapping("/user/admin/product/{id}")
-    public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam ("image") MultipartFile image, Long productsSold, @RequestParam Long deparmentId, @RequestParam Long editorId, @RequestParam Long makerId) throws IOException {
-        this.productService.updateProduct(id, name, description, price, image, productsSold, deparmentId, editorId, makerId);
+    public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam ("image") MultipartFile image, Long productsSold, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId) throws IOException {
+        this.productService.updateProduct(id, name, description, price, image, productsSold, deparmentId, supplierId, makerId);
         return "redirect:/profile";
     }
 
