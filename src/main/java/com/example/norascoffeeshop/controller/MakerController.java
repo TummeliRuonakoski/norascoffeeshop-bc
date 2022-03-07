@@ -46,9 +46,9 @@ public class MakerController {
     }
 
     // @Secured("ADMIN")
-    @DeleteMapping("/user/admin/maker/{id}")
+    @GetMapping("/user/admin/maker/delete/{id}")
     public String deleteMaker(@PathVariable Long id){
         this.makerService.deleteMaker(id);
-        return "redirect:/profile";
+        return "redirect:/user/admin/maker";
     }    
 }
