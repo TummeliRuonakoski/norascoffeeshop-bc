@@ -34,8 +34,7 @@ public class MakerController {
     @PostMapping("/user/admin/maker")
     public String createMaker(@RequestParam String name, @RequestParam String url){
         this.makerService.addMaker(name, url);
-        System.out.println("\n"  + "!!!!!!  name: " + name + "  url: " + url +  "!!!!!!" + "\n");
-        return "redirect:/postmaker";
+        return "redirect:/user/admin/maker";
 
     }
 
@@ -43,7 +42,7 @@ public class MakerController {
     @PostMapping("/user/admin/maker/{id}")
     public String updateMaker(@PathVariable Long id, @RequestParam String name, @RequestParam String url){
         this.makerService.updateMaker(id, name, url);
-        return "redirect:/maker";
+        return "redirect:/user/admin/maker";
     }
 
     // @Secured("ADMIN")
