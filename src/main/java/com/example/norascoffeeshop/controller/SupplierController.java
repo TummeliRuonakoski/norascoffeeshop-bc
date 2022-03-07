@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,25 +29,25 @@ public class SupplierController {
         return "supplier";
     }
 
-    @Secured("ADMIN")
+    // @Secured("ADMIN")
     @PostMapping("/user/admin/supplier")
     public String createSupplier(@RequestParam String name, @RequestParam String contactperson, @RequestParam String contactpersonsEmail){
         this.supplierService.addSupplier(name, contactperson, contactpersonsEmail);
-        return "redirect:/profile";
+        return "redirect:/user/admin/supplier";
     }
 
-    @Secured("ADMIN")
+    // @Secured("ADMIN")
     @PostMapping("/user/admin/supplier/{id}")
     public String updateSupplier(@PathVariable Long id, @RequestParam String name, @RequestParam String contactperson, @RequestParam String contactpersonsEmail){
         this.supplierService.updateSupplier(id, name, contactperson, contactpersonsEmail);
-        return "redirect:/supplier";
+        return "redirect:/user/admin/supplier";
     }
 
-    @Secured("ADMIN")
-    @DeleteMapping("/user/admin/supplier/{id}")
+    // @Secured("ADMIN")
+    @GetMapping("/user/admin/supplier/delete/{id}")
     public String deleteSupplier(@PathVariable Long id){
         this.supplierService.deleteSupplier(id);
-        return "redirect:/profile";
+        return "redirect:/user/admin/supplier";
     }
 
 }
