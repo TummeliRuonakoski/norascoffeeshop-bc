@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Editor  extends AbstractPersistable<Long> {
+public class Supplier extends AbstractPersistable<Long> {
     
     private String name;
     private String contactperson;

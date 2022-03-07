@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.List;
 
 import com.example.norascoffeeshop.model.Deparment;
-import com.example.norascoffeeshop.model.Editor;
+import com.example.norascoffeeshop.model.Supplier;
 import com.example.norascoffeeshop.model.Maker;
 import com.example.norascoffeeshop.model.Product;
 import com.example.norascoffeeshop.repository.DeparmentRepository;
-import com.example.norascoffeeshop.repository.EditorRepository;
+import com.example.norascoffeeshop.repository.SupplierRepository;
 import com.example.norascoffeeshop.repository.MakerRepository;
 import com.example.norascoffeeshop.repository.ProductRepository;
 
@@ -28,7 +28,7 @@ public class ProductService {
     private DeparmentRepository deparmentRepository;
 
     @Autowired
-    private EditorRepository editorRepository;
+    private SupplierRepository supplierRepository;
 
     @Autowired 
     private MakerRepository makerRepository;
@@ -61,9 +61,9 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
-    public void addProduct(String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long editorId, Long makerId) throws IOException {
+    public void addProduct(String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long supplierId, Long makerId) throws IOException {
         Deparment deparment = deparmentRepository.getById(deparmentId);
-        Editor editor = editorRepository.getById(editorId);
+        Supplier supplier = supplierRepository.getById(supplierId);
         Maker maker = makerRepository.getById(makerId);
         Product product = new Product();
         product.setName(name);
@@ -72,15 +72,15 @@ public class ProductService {
         product.setImage(image.getBytes());
         product.setProductsSold(productsSold);
         product.setDeparment(deparment);
-        product.setEditor(editor);
+        product.setSupplier(supplier);
         product.setMaker(maker);
         productRepository.save(product);
     }
 
-    public void updateProduct(Long id, String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long editorId, Long makerId) throws IOException {
+    public void updateProduct(Long id, String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long supplierId, Long makerId) throws IOException {
         Product product = productRepository.getById(id);
         Deparment deparment = deparmentRepository.getById(deparmentId);
-        Editor editor = editorRepository.getById(editorId);
+        Supplier supplier = supplierRepository.getById(supplierId);
         Maker maker = makerRepository.getById(makerId);
         product.setName(name);
         product.setDescription(description);
@@ -88,7 +88,7 @@ public class ProductService {
         product.setImage(image.getBytes());
         product.setProductsSold(productsSold);
         product.setDeparment(deparment);
-        product.setEditor(editor);
+        product.setSupplier(supplier);
         product.setMaker(maker);
         productRepository.save(product);
     }

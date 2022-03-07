@@ -50,7 +50,7 @@
 
       <h1>ADMIN</h1>
       
-      <a th:href="@{/user/admin/editor}"><h3>Supplier</h3></a>
+      <a th:href="@{/user/admin/supplier}"><h3>Supplier</h3></a>
       
       <a th:href="@{/user/admin/maker}"><h3>Makers</h3></a>
 
@@ -107,14 +107,14 @@
             </select>
           </div>
           <div class="form-floating">
-            <select class="form-select" name="editorId">
-              <option selected>Editor</option>
+            <select class="form-select" name="supplierId">
+              <option selected>Supplier</option>
               <option
-                th:each="editor : ${editors}"
-                th:text="${editor.name}"
-                th:value="${editor.id}"
+                th:each="supplier : ${suppliers}"
+                th:text="${supplier.name}"
+                th:value="${supplier.id}"
               >
-                editors
+                suppliers
               </option>
             </select>
           </div>

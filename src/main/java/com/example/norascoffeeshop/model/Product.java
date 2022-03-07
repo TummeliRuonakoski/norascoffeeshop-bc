@@ -4,7 +4,6 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
@@ -34,8 +33,8 @@ public class Product  extends AbstractPersistable<Long>{
     @JoinColumn(name = "deparmentId")
     private Deparment deparment;
     @ManyToOne
-    @JoinColumn(name = "editorId")
-    private Editor editor;
+    @JoinColumn(name = "supplierId")
+    private Supplier supplier;
     @ManyToOne    
     @JoinColumn(name = "makerId")
     private Maker maker;
