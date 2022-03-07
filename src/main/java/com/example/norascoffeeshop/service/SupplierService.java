@@ -28,7 +28,7 @@ public class SupplierService {
         Supplier supplier = new Supplier();
         supplier.setName(name);
         supplier.setContactperson(contactperson);
-        supplier.getContactpersonsEmail();
+        supplier.setContactpersonsEmail(contactpersonsEmail);
         supplierRepository.save(supplier);
     }
 
