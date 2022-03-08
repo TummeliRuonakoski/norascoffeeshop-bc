@@ -21,6 +21,10 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public UserData getUserById(Long id){
+        return userRepository.getById(id);
+    }
+
     public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
         UserData user = new UserData(); 
         user.setName(name);
@@ -33,13 +37,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(Long id, String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
+    public void updateUser(Long id, String name, String username, String address, String phonenumber, String email){
         UserData user = userRepository.getById(id);
         user.setName(name);
+        user.setUsername(username);
         user.setAddress(address);
         user.setPhonenumber(phonenumber);
         user.setEmail(email);
-        user.setIsAdmin(isAdmin);
         userRepository.save(user);
     }
 

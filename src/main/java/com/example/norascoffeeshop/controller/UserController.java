@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +24,12 @@ public class UserController {
         String username = auth.getName();
         model.addAttribute("userdata", userService.getUser(username));
         return "profile";
+    }
+
+    @GetMapping("/user/{id}")
+    public String getUserById(@PathVariable Long id, Model model){
+        model.addAttribute("user", userService.getUserById(id));
+        return "updateuser";
     }
 
     @GetMapping("/login")
@@ -55,12 +60,12 @@ public class UserController {
     }
 
     @PostMapping("/user/{id}")
-    public String updateUser(@PathVariable Long id, @RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password, @RequestParam Boolean isAdmin){
-        this.userService.updateUser(id, name, address, phonenumber, email, password, isAdmin);
-        return "redirect:/profile";
+    public String updateUser(@PathVariable Long id, @RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email){
+        this.userService.updateUser(id, name, email, address, phonenumber, email);
+        return "redirect:/user";
     }
 
-    @DeleteMapping("/user/{id}")
+    @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable Long id){
         this.userService.deleteUser(id);
         return "index";

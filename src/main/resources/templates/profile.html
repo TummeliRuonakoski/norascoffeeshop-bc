@@ -8,12 +8,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
+    <script src="https://kit.fontawesome.com/e7001ac7fb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/layout.css}" />
   </head>
 
@@ -39,10 +34,13 @@
             <td>email</td>
             <td th:text="${user.email}"></td>
           </tr>
+          <tr>
+            <td><a th:href="@{'/user/{id}'(id=${user.id})}"><i class="fa-solid fa-pen"></i></a>
+                <a th:href="@{'/user/delete/{id}'(id=${user.id})}"><i class="fa-solid fa-trash-can"></i></a></td>
+          </tr>
         </tbody>
       </table>
     </section>
-    <button class="changeUserData" type="submit">Change userdata</button>
   </section>
 
   <section class="admin" sec:authorize="hasAuthority('ADMIN')">
