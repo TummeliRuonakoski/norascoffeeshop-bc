@@ -1,32 +1,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <th:block th:include="fragments/layout :: head"/>
-        <title>Nora's Coffeeshop - Login</title>
-        <link rel="stylesheet" th:href="@{/css/form.css}">
-    </head>
-    <body>
-        <section th:replace="fragments/layout :: banner"></section>
 
-        <section>
-            <div class="form-div">
-                <h5>Welcome back!</h5>
-                <form class="form" method="post" th:action="@{/login}">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInput" name="username" placeholder="Your e-mail">
-                        <label for="floatingInput">Email address</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Your password">
-                        <label for="floatingPassword">Password</label>
-                    </div>
-                    <button class="form-button" type="submit">Login</button>
-                    <div><a th:href="@{/forgotpassword}">Forgot your password?</a></div>
-                    <div>Need an account? <a th:href="@{/register}">Register</a></div>
-                </form>
-            </div>
-        </section>
+<head>
+    <th:block th:include="fragments/layout :: head" />
+    <title>Nora's Coffeeshop - Login</title>
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+</head>
 
-        <section th:replace="fragments/layout :: footer"></section>
-  
-    </body>
+<body>
+    <header th:replace="fragments/layout :: banner"></header>
+
+    <section>
+        <div class="form-div">
+            <h5>Welcome back!</h5>
+            <form class="form" method="post" th:action="@{/login}">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" name="username"
+                        placeholder="Your e-mail">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" name="password"
+                        placeholder="Your password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button class="form-button" type="submit">Login</button>
+                <div><a th:href="@{/forgotpassword}">Forgot your password?</a></div>
+                <div>Need an account? <a th:href="@{/register}">Register</a></div>
+            </form>
+        </div>
+    </section>
+
+    <footer th:replace="fragments/layout :: footer"></footer>
+
+</body>
+
 </html>

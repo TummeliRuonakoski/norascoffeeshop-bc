@@ -1,58 +1,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <th:block th:include="fragments/layout :: head"/>
-        <title>Nora's Coffeeshop - Suppliers</title>
-        <link rel="stylesheet" th:href="@{/css/form.css}">
-        <script src="https://kit.fontawesome.com/e7001ac7fb.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <section th:replace="fragments/layout :: banner"></section>
 
-        <section class="getSuppliers">
-            <h2>Suppliers</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Contact</th>
-                        <th>Email</th>
-                        <th>Edit</th>
-                        <th>Remove</i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="supplier : ${suppliers}">
-                        <td th:text="${supplier.name}"></td>
-                        <td th:text="${supplier.contactperson}"></td>
-                        <td th:text="${supplier.contactpersonsEmail}"></td>
-                        <td><a th:href="@{'/user/admin/supplier/{id}'(id=${supplier.id})}"><i class="fa-solid fa-pen"></i></a></td>
-                        <td><a th:href="@{'/user/admin/supplier/delete/{id}'(id=${supplier.id})}"><i class="fa-solid fa-trash-can"></i></a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+<head>
+    <th:block th:include="fragments/layout :: head" />
+    <title>Nora's Coffeeshop - Suppliers</title>
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+</head>
 
-        <section class="postSupplier">
+<body>
+    <header th:replace="fragments/layout :: banner"></header>
 
-            <h2>Add a new supplier</h2>
+    <section class="getSuppliers">
+        <h2>Suppliers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Remove</i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="supplier : ${suppliers}">
+                    <td th:text="${supplier.name}"></td>
+                    <td th:text="${supplier.contactperson}"></td>
+                    <td th:text="${supplier.contactpersonsEmail}"></td>
+                    <td><a th:href="@{'/user/admin/supplier/{id}'(id=${supplier.id})}"><i
+                                class="fa-solid fa-pen"></i></a></td>
+                    <td><a th:href="@{'/user/admin/supplier/delete/{id}'(id=${supplier.id})}"><i
+                                class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-            <form th:action="@{/user/admin/supplier}" method="post">
-                <div class="form-floating">
-                    <input type="text" class="form-control" name="name" placeholder="The name of the supplier"/>
-                    <label for="floatingSupplierName">The name of the supplier</label>
-                </div>
-                <div class="form-floating">
-                    <input type="text" class="form-control" name="contactperson" placeholder="The name of the contact person"/>
-                    <label for="floatingContactPerson">The contact person</label>
-                </div>
-                <div class="form-floating">
-                    <input type="text" class="form-control" name="contactpersonsEmail" placeholder="The email address of the contact person"/>
-                    <label for="floatingEmail">The contact persons email</label>
-                </div>
-                <input type="submit" value="Add"/>
-            </form>
-        </section>
+    <section class="postSupplier">
 
-        <section th:replace="fragments/layout :: footer"></section>
-    </body>
+        <h2>Add a new supplier</h2>
+
+        <form th:action="@{/user/admin/supplier}" method="post">
+            <div class="form-floating">
+                <input type="text" class="form-control" name="name" placeholder="The name of the supplier" />
+                <label for="floatingSupplierName">The name of the supplier</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="contactperson"
+                    placeholder="The name of the contact person" />
+                <label for="floatingContactPerson">The contact person</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="contactpersonsEmail"
+                    placeholder="The email address of the contact person" />
+                <label for="floatingEmail">The contact persons email</label>
+            </div>
+            <input type="submit" value="Add" />
+        </form>
+    </section>
+
+    <footer th:replace="fragments/layout :: footer"></footer>
+</body>
+
 </html>

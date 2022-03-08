@@ -1,42 +1,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <th:block th:include="fragments/layout :: head"/>
-        <title>Nora's Coffeeshop - Register Account</title>
-        <link rel="stylesheet" th:href="@{/css/form.css}">
-    </head>
-    <body>
-        <section th:replace="fragments/layout :: banner"></section>
 
-        <section>
-            <div class="form-div">
-                <h5>My info</h5>
-                <form class="form" th:action="@{/register}" method="post">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingFirstName" name="name" placeholder="Your firstname lastname">
-                        <label for="floatingFirstName">First name</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingStreet" name="address" placeholder="Your street address (street postcode city)">
-                        <label for="floatingAndress">Address</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingNumber" name="phonenumber" placeholder="Your phonenumber">
-                        <label for="floatingPhonenumber">Phonenumber</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Your e-mail">
-                        <label for="floatingInput">Email address</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Your password">
-                        <label for="floatingPassword">Password</label>
-                    </div>
-                    <button class="form-button" type="submit">Continue</button>
-                </form>
-            </div>
-        </section>
+<head>
+    <th:block th:include="fragments/layout :: head" />
+    <title>Nora's Coffeeshop - Register Account</title>
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+</head>
 
-        <section th:replace="fragments/layout :: footer"></section>
-  
-    </body>
+<body>
+    <header th:replace="fragments/layout :: banner"></header>
+
+    <section>
+        <div class="form-div">
+            <h5>My info</h5>
+            <form class="form" th:action="@{/register}" method="post">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingFirstName" name="name"
+                        placeholder="Your firstname lastname">
+                    <label for="floatingFirstName">First name</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingStreet" name="address"
+                        placeholder="Your street address (street postcode city)">
+                    <label for="floatingAndress">Address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingNumber" name="phonenumber"
+                        placeholder="Your phonenumber">
+                    <label for="floatingPhonenumber">Phonenumber</label>
+                </div>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Your e-mail">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" name="password"
+                        placeholder="Your password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button class="form-button" type="submit">Continue</button>
+            </form>
+        </div>
+    </section>
+
+    <footer th:replace="fragments/layout :: footer"></footer>
+
+</body>
+
 </html>

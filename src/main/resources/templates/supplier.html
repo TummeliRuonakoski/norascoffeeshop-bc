@@ -1,38 +1,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <th:block th:include="fragments/layout :: head"/>
-        <title>Nora's coffeeshop - login</title>
-        <script src="https://kit.fontawesome.com/e7001ac7fb.js" crossorigin="anonymous"></script>
-    </head>
-    
-    <body>
-        <section th:replace="fragments/layout :: banner"></section>
-        
-        <section>
-            <h1 th:text="'Edit ' + ${supplier.name}">name</h1>
-            <article>
-                <h2>The supplier's current contact person</h2>
-                <p th:text="${supplier.contactperson}"></p>
-                <h2>The supplier's current contact person email</h2>
-                <p th:text="${supplier.contactpersonsEmail}"></p>
-            </article>
-            <form th:action="@{'/user/admin/supplier/{id}'(id=${supplier.id})}" method="post">
-                <div class="form-floating">
-                    <input type="text" class="form-control" name="name" placeholder="The name of the supplier"/>
-                    <label for="floatingSupplierName">The name of the suppier</label>
-                </div>
-                <div class="form-floating">
-                    <input type="text" class="form-control" name="contactperson" placeholder="The supplier contact person"/>
-                    <label for="floatingContactperson">The supplier contact person</label>
-                </div>
-                <div class="form-floating">
-                  <input type="text" class="form-control" name="contactpersonsEmail" placeholder="The supplier contact persons email"/>
-                  <label for="floatingContactperson">The supplier contact persons email</label>
-                </div>
-                <input type="submit" value="Add"></input>
-            </form>
-        </section>
-        
-        <section th:replace="fragments/layout :: footer"></section>
-    </body>
+
+<head>
+    <th:block th:include="fragments/layout :: head" />
+    <title>Nora's Coffeeshop - Edit Supplier</title>
+</head>
+
+<body>
+    <header th:replace="fragments/layout :: banner"></header>
+
+    <section>
+        <h1 th:text="'Edit ' + ${supplier.name}">name</h1>
+        <article>
+            <h2>The supplier's current contact person</h2>
+            <p th:text="${supplier.contactperson}"></p>
+            <h2>The supplier's current contact person email</h2>
+            <p th:text="${supplier.contactpersonsEmail}"></p>
+        </article>
+        <form th:action="@{'/user/admin/supplier/{id}'(id=${supplier.id})}" method="post">
+            <div class="form-floating">
+                <input type="text" class="form-control" name="name" placeholder="The name of the supplier" />
+                <label for="floatingSupplierName">The name of the suppier</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="contactperson"
+                    placeholder="The supplier contact person" />
+                <label for="floatingContactperson">The supplier contact person</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="contactpersonsEmail"
+                    placeholder="The supplier contact persons email" />
+                <label for="floatingContactperson">The supplier contact persons email</label>
+            </div>
+            <input type="submit" value="Add"></input>
+        </form>
+    </section>
+
+    <footer th:replace="fragments/layout :: footer"></footer>
+</body>
+
 </html>
