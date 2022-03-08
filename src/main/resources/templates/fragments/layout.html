@@ -19,17 +19,11 @@
         <a class="navbar-brand" href="#">Navbar</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" th:href="@{/index}">home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/consumerproducts}">consumer products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/coffeemachines}">coffee machines</a>
-            </li>
-            <li class="nac-item"><a class="nav-link" th:href="@{/login}">log in</a></li>
-            <li class="nac-item"><a class="nav-link" th:href="@{/user}">profile</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}">home</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/consumerproducts}">consumer products</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/coffeemachines}">coffee machines</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/login}">log in</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/user}">profile</a></li>
           </ul>
         </div>
       </div>
@@ -42,19 +36,17 @@
         <div class="col-2">
           <h5>Links</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">home</a></li>
-            <li class="nav-item mb-2"><a href="../consumerprotucts.html" class="nav-link p-0 text-muted">consumer
-                products</a></li>
-            <li class="nav-item mb-2"><a href="../coffeemachines.html" class="nav-link p-0 text-muted">coffee
-                machines</a></li>
-            <li class="nav-item mb-2"><a href="../login.html" class="nav-link p-0 text-muted">log in</a></li>
+            <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" th:href="@{/index}">Home</a></li>
+            <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" th:href="@{/consumerproducts}">Consumer products</a></li>
+            <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" th:href="@{/coffeemachines}">Coffee machines</a></li>
+            <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" th:href="@{/login}">Log in</a></li>
           </ul>
         </div>
 
         <div class="col-2">
           <h5>Contact information</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2">Nora's Coffee shop</li>
+            <li class="nav-item mb-2">Nora's Coffee Shop</li>
             <li class="nav-item mb-2">
               <ul class="address">
                 <li>Heikkikatu 3</li>
@@ -70,9 +62,9 @@
         <div class="col-2">
           <h5>Social media</h5>
           <ul class="nav flex-column list-unstyled d-flex">
-            <li><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a></li>
-            <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
-            <li><a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a class="text-muted" href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a class="text-muted" href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a class="text-muted" href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a></li>
           </ul>
         </div>
         <div class="d-flex justify-content-between py-4 my-4 border-top">
