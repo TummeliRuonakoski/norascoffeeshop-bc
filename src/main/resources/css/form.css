@@ -1,10 +1,10 @@
-.login-div {
+.form-div {
   display: block;
   text-align: center;
   padding: 5rem 0 5rem 0;
 }
 
-.login-form {
+.form {
   width: 20rem;
   display: inline-block;
   margin-left: auto;
@@ -12,7 +12,7 @@
   text-align: left;
 }
 
-.login-button {
+.form-button {
   width: 100%;
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
