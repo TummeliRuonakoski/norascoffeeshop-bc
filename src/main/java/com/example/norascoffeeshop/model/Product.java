@@ -35,12 +35,9 @@ public class Product  extends AbstractPersistable<Long>{
 
 
     @ManyToOne
-    @JoinColumn(name = "deparmentId")
     private Deparment deparment;
     @ManyToOne
-    @JoinColumn(name = "supplierId")
     private Supplier supplier;
     @ManyToOne    
-    @JoinColumn(name = "makerId")
     private Maker maker;
 }

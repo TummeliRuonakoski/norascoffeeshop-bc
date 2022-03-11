@@ -27,7 +27,7 @@ public class Supplier extends AbstractPersistable<Long> {
     @Email
     private String contactpersonsEmail;
 
-    @OneToMany
+    @OneToMany(mappedBy = "supplier")
     private List<Product> products = new ArrayList<>();
 
 }

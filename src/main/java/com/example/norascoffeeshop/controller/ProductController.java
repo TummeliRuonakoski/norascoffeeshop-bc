@@ -87,32 +87,18 @@ public class ProductController {
     @GetMapping("/user/admin/product")
     public String getProducts(Model model){
         model.addAttribute("products", productService.listAll());
-        model.addAttribute("makers", makerService.listAll());
         model.addAttribute("deparments", deparmentService.listAll());
         model.addAttribute("suppliers", supplierService.listAll());
+        model.addAttribute("makers", makerService.listAll());
         return "product";
 
     }
 
     // @Secured("ADMIN")
     @PostMapping("/user/admin/product")
-    public String createProduct(@RequestParam String description, @RequestParam("image") MultipartFile image, @RequestParam String name, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId) throws IOException{
-        System.out.println("\n" + "!!!!!!!!!!! " + name + " " + description + " " + price + " " + " " + image + " " + deparmentId + " " + supplierId + " " + makerId + "!!!!!!!!!!!" + "\n");
-
-        // System.out.println("3333333333333!!!!!!!!!!!!!!!!!image: " + Base64.getEncoder().encodeToString(image.getBytes()));
-
-        
-        System.out.println("!!!!!!!!!!!!!!!!!deparment: " + deparmentId);
-        System.out.println("!!!!!!!!!!!!!!!!!!name: " + name);
-
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!maker: " + makerId);
-        System.out.println("!!!!!!!!!!!!!!!!!!11maker: " + makerService.getMaker(makerId));
-
-
-        System.out.println("\n" + "2!!!!!!!!!!!2 " + name + " " + description + " " + price + " " + " " + image + " deparment: " + deparmentId + " " + deparmentService.getDeparment(deparmentId) + " supplier: " + supplierId + " " + supplierService.getSupplier(supplierId) + " maker: "+ makerId + " " + makerService.getMaker(makerId) + "2!!!!!!!!!!!2" + "\n");
-        
+    public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam("image") MultipartFile image) throws IOException{
         productService.addProduct(description, image, name, price, deparmentId, supplierId, makerId);
-        return "redirect:/user/admin/product";
+        return "/user/admin/product";
     }
 
     // @Secured("ADMIN")

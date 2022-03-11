@@ -21,7 +21,7 @@ public class Maker  extends AbstractPersistable<Long>{
     private String name;
     private String url;
 
-    @OneToMany
+    @OneToMany(mappedBy = "maker")
     private List<Product> products = new ArrayList<>();
 
 

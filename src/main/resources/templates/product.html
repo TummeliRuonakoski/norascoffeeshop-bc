@@ -6,126 +6,126 @@
     <link rel="stylesheet" th:href="@{/css/layout.css}">
 </head>
 
+<section th:replace="fragments/layout :: banner"></section>
 
-<h1>Product</h1>
+
 <section class="getProducts">
+  <h2>Product</h2>
+
     <table>
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>price</th>
-            <th>image</th>
-            <th>deparment</th>
-            <th>supplier</th>
-            <th>maker</th>
-            <th>edit</th>
-            <th>remove</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="product : ${products}">
-            <td th:text="${product.name}">name</td>
-            <td th:text="${product.description}">description</td>
-            <td th:text="${product.price}">price</td>
-            <td th:text="${product.image}">image</td>
-            <td th:text="${product.deparments}">deparment</td>
-            <td th:text="${product.suppliers}">supplier</td>
-            <td th:text="${product.makers}">maker</td>
-            <td><a th:href="@{'/user/admin/product/{id}'(id=${product.id})}"><i class="fa-solid fa-pen"></i></a></td>
-            <td><a th:href="@{'/user/admin/product/delete/{id}'(id=${product.id})}"><i class="fa-solid fa-trash-can"></i></a></td>
-          </tr>
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>description</th>
+          <th>price</th>
+          <th>deparment</th>
+          <th>supplier</th>
+          <th>maker</th>
+          <th>edit</th>
+          <th>remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="product : ${products}">
+          <td th:text="${product.name}">name</td>
+          <td th:text="${product.description}">description</td>
+          <td th:text="${product.price}">price</td>
+          <td th:text="${product.deparment.name}">deparment</td>
+          <td th:text="${product.supplier.name}">supplier</td>
+          <td th:text="${product.maker.name}">maker</td>
+          <td><a th:href="@{'/user/admin/product/{id}'(id=${product.id})}"><i class="fa-solid fa-pen"></i></a></td>
+          <td><a th:href="@{'/user/admin/product/delete/{id}'(id=${product.id})}"><i class="fa-solid fa-trash-can"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
 </section>
 
 
-<section class="postProduct">
-    <section class="addProduct">
-        <h2>Add a new product</h2>
-        <form th:action="@{/user/admin/product}" method="post" enctype="multipart/form-data">
+  <section class="addProduct">
 
-          <div class="form-floating">
-            <input
-              type="text"
-              name="description"
-              id="floatingDescription"
-              class="form-control"
-              placeholder="description"
-            ></input>
-            <label for="floatingDescription">Description</label>
-          </div>
+      <h2>Add a new product</h2>
 
-          <div class="form-floating" enctype="multipart/form-data">
-            <input
-              type="file"
-              id="image"
-              name="image"
-            />
-            <label for="floatingImage">Select an image</label>
-          </div>
+      <form th:action="@{/user/admin/product}" method="post" enctype="multipart/form-data">
 
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingProductName"
+            name="name"
+            placeholder="the name of the product"
+          />
+          <label for="floatingProductName">The name on the product</label>
+        </div>
 
-            <div class="form-floating">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingProductName"
-                name="name"
-                placeholder="the name of the product"
-              />
-              <label for="floatingProductName">The name on the product</label>
-            </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            name="description"
+            id="floatingDescription"
+            class="form-control"
+            placeholder="description"
+          ></input>
+          <label for="floatingDescription">Description</label>
+        </div>
 
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingPrice"
+            name="price"
+            placeholder="Product price"
+          />
+          <label for="floatingPrice">Product price</label>
+        </div>
 
-            <div class="form-floating">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingPrice"
-                name="price"
-                placeholder="Product price"
-              />
-              <label for="floatingPrice">Product price</label>
-            </div>
+        <div class="form-floating">
+          <select class="form-select" th:name="deparmentId">
+            <option selected>Deparments</option>
+            <option
+              th:each="deparment : ${deparments}"
+              th:text="${deparment.name}"
+              th:value="${deparment.id}">
+            </option>
+          </select>
+        </div>
 
-            <div class="form-floating">
-              <select class="form-select" th:name="deparmentId">
-                <option selected>Deparments</option>
-                <option
-                  th:each="deparment : ${deparments}"
-                  th:text="${deparment.name}"
-                  th:value="${deparment.id}">
-                </option>
-              </select>
-            </div>
+        <div class="form-floating">
+          <select class="form-select" th:name="supplierId">
+            <option selected>Supplier</option>
+            <option
+              th:each="supplier : ${suppliers}"
+              th:text="${supplier.name}"
+              th:value="${supplier.id}"
+            >
+            </option>
+          </select>
+        </div>
+        
+        <div class="form-floating">
+          <select class="form-select" th:name="makerId">
+            <option selected>makers</option>
+            <option
+              th:each="maker : ${makers}"
+              th:text="${maker.name}"
+              th:value="${maker.id}"
+            >
+            </option>
+          </select>
+        </div>
 
-            <div class="form-floating">
-              <select class="form-select" th:name="supplierId">
-                <option selected>Supplier</option>
-                <option
-                  th:each="supplier : ${suppliers}"
-                  th:text="${supplier.name}"
-                  th:value="${supplier.id}"
-                >
-                </option>
-              </select>
-            </div>
-            
-            <div class="form-floating">
-              <select class="form-select" th:name="makerId">
-                <option selected>makers</option>
-                <option
-                  th:each="maker : ${makers}"
-                  th:text="${maker.name}"
-                  th:value="${maker.id}"
-                >
-                </option>
-              </select>
-            </div>
+        <div class="form-floating" enctype="multipart/form-data">
+          <input
+            type="file"
+            id="image"
+            name="image"
+          />
+          <label for="floatingImage">Select an image</label>
+        </div>
 
-            
-          <input type="submit" value="Add"></input>
-        </form>
-      </section>
-</section>
+        <input type="submit" value="Add"></input>
+      </form>
+    </section>
+
+<section th:replace="fragments/layout :: footer"></section>
