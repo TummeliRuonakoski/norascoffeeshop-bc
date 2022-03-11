@@ -2,10 +2,18 @@ package com.example.norascoffeeshop.controller;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
+import com.example.norascoffeeshop.service.DeparmentService;
+import com.example.norascoffeeshop.service.MakerService;
 import com.example.norascoffeeshop.service.ProductService;
+import com.example.norascoffeeshop.service.SupplierService;
 import com.example.norascoffeeshop.model.Product;
+import com.example.norascoffeeshop.model.Deparment;
+import com.example.norascoffeeshop.model.Supplier;
+import com.example.norascoffeeshop.model.Maker;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +36,15 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private MakerService makerService;
+
+    @Autowired
+    private DeparmentService deparmentService;
+
+    @Autowired
+    private SupplierService supplierService;
 
     @GetMapping("/")
     public String topSellers(Model model){
@@ -66,22 +83,47 @@ public class ProductController {
         return "product";
     }
 
-    @Secured("ADMIN")
+    // @Secured("ADMIN")
+    @GetMapping("/user/admin/product")
+    public String getProducts(Model model){
+        model.addAttribute("products", productService.listAll());
+        model.addAttribute("makers", makerService.listAll());
+        model.addAttribute("deparments", deparmentService.listAll());
+        model.addAttribute("suppliers", supplierService.listAll());
+        return "product";
+
+    }
+
+    // @Secured("ADMIN")
     @PostMapping("/user/admin/product")
-    public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam("image") MultipartFile image, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId) throws IOException{
-        this.productService.addProduct(name, description, price, image, 0L, deparmentId, supplierId, makerId);
-        return "redirect:/profile";
+    public String createProduct(@RequestParam String description, @RequestParam("image") MultipartFile image, @RequestParam String name, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId) throws IOException{
+        System.out.println("\n" + "!!!!!!!!!!! " + name + " " + description + " " + price + " " + " " + image + " " + deparmentId + " " + supplierId + " " + makerId + "!!!!!!!!!!!" + "\n");
+
+        // System.out.println("3333333333333!!!!!!!!!!!!!!!!!image: " + Base64.getEncoder().encodeToString(image.getBytes()));
+
+        
+        System.out.println("!!!!!!!!!!!!!!!!!deparment: " + deparmentId);
+        System.out.println("!!!!!!!!!!!!!!!!!!name: " + name);
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!maker: " + makerId);
+        System.out.println("!!!!!!!!!!!!!!!!!!11maker: " + makerService.getMaker(makerId));
+
+
+        System.out.println("\n" + "2!!!!!!!!!!!2 " + name + " " + description + " " + price + " " + " " + image + " deparment: " + deparmentId + " " + deparmentService.getDeparment(deparmentId) + " supplier: " + supplierId + " " + supplierService.getSupplier(supplierId) + " maker: "+ makerId + " " + makerService.getMaker(makerId) + "2!!!!!!!!!!!2" + "\n");
+        
+        productService.addProduct(description, image, name, price, deparmentId, supplierId, makerId);
+        return "redirect:/user/admin/product";
     }
 
-    @Secured("ADMIN")
+    // @Secured("ADMIN")
     @PostMapping("/user/admin/product/{id}")
-    public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam ("image") MultipartFile image, Long productsSold, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId) throws IOException {
-        this.productService.updateProduct(id, name, description, price, image, productsSold, deparmentId, supplierId, makerId);
-        return "redirect:/profile";
+    public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam ("image") MultipartFile image) throws IOException {
+        this.productService.updateProduct(id, name, description, price, deparmentId, supplierId, makerId, image);
+        return "/user/admin/product";
     }
 
-    @Secured("ADMIN")
-    @DeleteMapping("/user/admin/product/{id}")
+    // @Secured("ADMIN")
+    @DeleteMapping("/user/admin/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         this.productService.deleteProduct(id);
         return "redirect:/profile";

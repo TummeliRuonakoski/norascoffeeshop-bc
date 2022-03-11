@@ -1,6 +1,7 @@
 package com.example.norascoffeeshop.service;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import com.example.norascoffeeshop.model.Deparment;
@@ -61,23 +62,22 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
-    public void addProduct(String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long supplierId, Long makerId) throws IOException {
+    public void addProduct(String description, MultipartFile image, String name, Double price, Long deparmentId, Long supplierId, Long makerId) throws IOException {
         Deparment deparment = deparmentRepository.getById(deparmentId);
         Supplier supplier = supplierRepository.getById(supplierId);
         Maker maker = makerRepository.getById(makerId);
         Product product = new Product();
-        product.setName(name);
         product.setDescription(description);
+        product.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+        product.setName(name);
         product.setPrice(price);
-        product.setImage(image.getBytes());
-        product.setProductsSold(productsSold);
         product.setDeparment(deparment);
         product.setSupplier(supplier);
         product.setMaker(maker);
         productRepository.save(product);
     }
 
-    public void updateProduct(Long id, String name, String description, Double price, MultipartFile image, Long productsSold, Long deparmentId, Long supplierId, Long makerId) throws IOException {
+    public void updateProduct(Long id, String name, String description, Double price,  Long deparmentId, Long supplierId, Long makerId, MultipartFile image) throws IOException {
         Product product = productRepository.getById(id);
         Deparment deparment = deparmentRepository.getById(deparmentId);
         Supplier supplier = supplierRepository.getById(supplierId);
@@ -85,11 +85,10 @@ public class ProductService {
         product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
-        product.setImage(image.getBytes());
-        product.setProductsSold(productsSold);
         product.setDeparment(deparment);
         product.setSupplier(supplier);
         product.setMaker(maker);
+        product.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
         productRepository.save(product);
     }
     
