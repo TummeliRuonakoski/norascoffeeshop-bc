@@ -2,7 +2,6 @@ package com.example.norascoffeeshop.controller;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 
 import com.example.norascoffeeshop.service.DeparmentService;
@@ -10,9 +9,6 @@ import com.example.norascoffeeshop.service.MakerService;
 import com.example.norascoffeeshop.service.ProductService;
 import com.example.norascoffeeshop.service.SupplierService;
 import com.example.norascoffeeshop.model.Product;
-import com.example.norascoffeeshop.model.Deparment;
-import com.example.norascoffeeshop.model.Supplier;
-import com.example.norascoffeeshop.model.Maker;
 
 
 
@@ -56,8 +52,7 @@ public class ProductController {
 
     @GetMapping("/coffeemachines")
     public String getAllCoffeemachines(Model model){
-        List<Long> coffeemachines = Arrays.asList(1L);
-        // List<Long> coffeemachines = Arrays.asList(3L, 4L, 5L);
+        List<Long> coffeemachines = Arrays.asList(1L,3L, 4L, 5L);
         List<Product> products = productService.getAllCoffeeMachines(coffeemachines);
         model.addAttribute("coffeemachines", products);
         return "coffeemachines";
@@ -71,7 +66,7 @@ public class ProductController {
 
     @GetMapping("/consumerproducts")
     public String getAllConsumerProducts(Model model){
-        List<Long> consumerproducts = Arrays.asList(6L, 7L);
+        List<Long> consumerproducts = Arrays.asList(2L,6L, 7L, 8L, 9L);
         List<Product> products = productService.getAllConsumeProducts(consumerproducts);
         model.addAttribute("consumerproducts", products);
         return "consumerproducts";
