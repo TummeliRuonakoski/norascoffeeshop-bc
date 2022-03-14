@@ -4,6 +4,8 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Column;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
@@ -20,23 +22,22 @@ import lombok.NoArgsConstructor;
 @Data
 public class Product  extends AbstractPersistable<Long>{
     
-    private String name;
     private String description;
+    // @Type(type = "org.hibernate.type.BinaryType")
+    // @Basic(fetch = FetchType.LAZY)
+    // @Column(name = "image", length = 1000)
+    @Lob
+    private String image;
+
+    private String name;
     private Double price;
-    // @Lob
-    @Type(type = "org.hibernate.type.BinaryType")
-    @Basic(fetch = FetchType.EAGER)
-    private byte[] image;
-    private Long productsSold;
+    // private Long productsSold;
+
 
     @ManyToOne
-    @JoinColumn(name = "deparmentId")
     private Deparment deparment;
     @ManyToOne
-    @JoinColumn(name = "supplierId")
     private Supplier supplier;
     @ManyToOne    
-    @JoinColumn(name = "makerId")
     private Maker maker;
-
 }

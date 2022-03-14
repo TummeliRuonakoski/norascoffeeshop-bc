@@ -45,59 +45,14 @@
       <a th:href="@{/user/admin/supplier}">
         <h3>Supplier</h3>
       </a>
-
       <a th:href="@{/user/admin/maker}">
         <h3>Makers</h3>
       </a>
-      <!-- Tähän tuotteiden lisäys, tee controller ja service -->
-      <!-- <a th:href="@{/user/admin/products}"><h3>Products</h3></a> -->
+      <a th:href="@{/user/admin/product}"><h3>Products</h3></a>
     </aside>
 
     <section>
       <h2>Only for admins</h2>
-
-      <section class="addProduct">
-        <form th:action="@{/admin/product}" method="post">
-          <h2>Add a new product</h2>
-          <div class="form-floating">
-            <input type="text" class="form-control" id="floatingProductName" name="productname"
-              placeholder="the name of the product" />
-            <label for="floatingProductName">The name on the product</label>
-          </div>
-          <div class="form-floating">
-            <textarea name="description" id="floatingDescription" class="form-control" rows="3"
-              placeholder="description">Description</textarea>
-          </div>
-          <div class="form-floating">
-            <input type="text" class="form-control" id="floatingPrice" name="price" placeholder="Product price" />
-            <label for="floatingPrice">Product price</label>
-          </div>
-          <div class="form-floating">
-            <select class="form-select" name="deparmentId">
-              <option selected>Deparments</option>
-              <option th:each="deparment : ${deparments}" th:text="${deparment.name}" th:value="${deparment.id}">
-                deparments
-              </option>
-            </select>
-          </div>
-          <div class="form-floating">
-            <select class="form-select" name="supplierId">
-              <option selected>Supplier</option>
-              <option th:each="supplier : ${suppliers}" th:text="${supplier.name}" th:value="${supplier.id}">
-                suppliers
-              </option>
-            </select>
-          </div>
-          <div class="form-floating">
-            <select class="form-select" name="makerId">
-              <option selected>makers</option>
-              <option th:each="maker : ${makers}" th:text="${maker.name}" th:value="${maker.id}">
-                makers
-              </option>
-            </select>
-          </div>
-        </form>
-      </section>
     </section>
   </section>
 

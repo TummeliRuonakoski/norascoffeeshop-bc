@@ -15,7 +15,7 @@ public class DeparmentController {
 
     @GetMapping("/user/admin/deparment")
     public String list(Model model){
-        model.addAttribute("deparment", deparmentService.listAll());
+        model.addAttribute("deparments", deparmentService.listAll());
         return "profile";
     }
     

@@ -22,6 +22,6 @@ public class Deparment  extends AbstractPersistable<Long>{
     private String name;
     private Long derarmentId;
 
-    @OneToMany
+    @OneToMany(mappedBy = "deparment")
     private List<Product> products = new ArrayList<>();
 }
