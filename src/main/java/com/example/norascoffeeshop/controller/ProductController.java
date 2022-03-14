@@ -62,11 +62,10 @@ public class ProductController {
         model.addAttribute("coffeemachines", products);
         return "coffeemachines";
     }
-
     
-    @GetMapping(path = "/coffeemachines/{id}/image")
+    @GetMapping(path = "/product/{id}/image")
     @ResponseBody
-    public String getKuvatcoffeemachinesImages(@PathVariable Long id) {
+    public byte[] getImages(@PathVariable Long id) {
         return productService.getProduct(id).getImage();
     }
 
@@ -107,7 +106,7 @@ public class ProductController {
     @PostMapping("/user/admin/product")
     public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam("image") MultipartFile image) throws IOException{
         productService.addProduct(description, image, name, price, deparmentId, supplierId, makerId);
-        return "/user/admin/product";
+        return "redirect:/user/admin/product";
     }
 
     // @Secured("ADMIN")

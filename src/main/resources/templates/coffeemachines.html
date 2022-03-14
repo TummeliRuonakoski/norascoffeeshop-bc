@@ -9,8 +9,6 @@
     <header th:replace="fragments/layout :: banner"></header>
 
     <h1>Coffee machines</h1>
-                <!-- th:src="@{/product/{id}/content(id=${coffeemachine.id})}" -->
-                <!-- th:src="*{'data:/image/*;base64,'{coffeemachine.image})}" -->
 
     <section class="container">
         <div class="card" th:each="coffeemachine : ${coffeemachines}">
