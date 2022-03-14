@@ -10,6 +10,26 @@
 
     <h1>Coffee machines</h1>
 
+    <section class="container">
+        <div class="card" th:each="coffeemachine : ${coffeemachines}">
+            <img
+                th:src="@{/product/{id}/image(id=${coffeemachine.id})}"
+                class="image"
+                alt="${coffeemachine.name}"
+            />
+            <div class="card-body">
+                <h5 class="card-title" th:text="${coffeemachine.name}"></h5>
+                <p>
+                    <span class="card-text" th:text="${coffeemachine.price}"></span> €
+                </p>
+                <a
+                th:href="@{/product/{id}(id=${coffeemachine.id})}"
+                class="btn btn-primary"
+                >Show more</a>
+            </div>
+        </div>
+      </section>
+
     <footer th:replace="fragments/layout :: footer"></footer>
 </body>
 

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -55,10 +56,17 @@ public class ProductController {
 
     @GetMapping("/coffeemachines")
     public String getAllCoffeemachines(Model model){
-        List<Long> coffeemachines = Arrays.asList(3L, 4L, 5L);
+        List<Long> coffeemachines = Arrays.asList(1L);
+        // List<Long> coffeemachines = Arrays.asList(3L, 4L, 5L);
         List<Product> products = productService.getAllCoffeeMachines(coffeemachines);
         model.addAttribute("coffeemachines", products);
         return "coffeemachines";
+    }
+    
+    @GetMapping(path = "/product/{id}/image")
+    @ResponseBody
+    public byte[] getImages(@PathVariable Long id) {
+        return productService.getProduct(id).getImage();
     }
 
     @GetMapping("/consumerproducts")
@@ -77,6 +85,12 @@ public class ProductController {
         return "consumerproducts";
     }
 
+    @GetMapping("/product/{id}")
+    public String getProduct(Model model, @PathVariable Long id){
+        model.addAttribute("product", productService.getProduct(id));
+        return "showproduct";
+    }
+
     // @Secured("ADMIN")
     @GetMapping("/user/admin/product")
     public String getProducts(Model model){
@@ -86,12 +100,6 @@ public class ProductController {
         model.addAttribute("makers", makerService.listAll());
         return "postproduct";
 
-    }
-
-    @GetMapping("/user/admin/product/{id}")
-    public String getProduct(Model model, @PathVariable Long id){
-        model.addAttribute("product", productService.getProduct(id));
-        return "product";
     }
 
     // @Secured("ADMIN")

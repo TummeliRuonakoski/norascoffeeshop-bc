@@ -34,6 +34,8 @@ public class ProductService {
     @Autowired 
     private MakerRepository makerRepository;
 
+    public static String imageFolder = "/src/main/resources/static/images/";
+
     public Page<Product> topSellers(Pageable pageable){
         return productRepository.findAll(pageable);
     }
@@ -73,7 +75,7 @@ public class ProductService {
         product.setDeparment(deparment);
         product.setSupplier(supplier);
         product.setMaker(maker);
-        product.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+        product.setImage(image.getBytes());
         productRepository.save(product);
     }
 
@@ -88,7 +90,7 @@ public class ProductService {
         product.setDeparment(deparment);
         product.setSupplier(supplier);
         product.setMaker(maker);
-        product.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+        product.setImage(image.getBytes());
         productRepository.save(product);
     }
     
