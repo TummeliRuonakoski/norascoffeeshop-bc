@@ -16,14 +16,11 @@
       <h2>The product's current price</h2>
       <p th:text="${product.price}"></p>
       <h2>The product's current department</h2>
-      <p th:text="${product.department.name}"></p>
-      <!-- <h2>The product's current supplier</h2>
-      <p th:text="${product.supplier.name}"></p>
-      <h2>The product's current maker</h2>
-      <p th:text="${product.maker.name}"></p> -->
+      <!-- <p th:text="${product.department.name}"></p> -->
+
     </article>
 
-    <form th:action="@{'/user/admin/product/{id}'(id=${product.id})}" method="post">
+    <form th:action="@{'/user/admin/product/update/{id}'(id=${product.id})}" method="post">
 
       <div class="form-floating">
         <input type="text" class="form-control" name="name" placeholder="The name of the product" />

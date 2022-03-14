@@ -91,6 +91,15 @@ public class ProductController {
         return "showproduct";
     }
 
+    @GetMapping("/user/admin/product/update/{id}")
+    public String getUpdateProduct(Model model, @PathVariable Long id){
+        model.addAttribute("product", productService.getProduct(id));
+        // model.addAttribute("deparments", deparmentService.listAll());
+        // model.addAttribute("suppliers", supplierService.listAll());
+        // model.addAttribute("makers", makerService.listAll());
+        return "product";
+    }
+
     // @Secured("ADMIN")
     @GetMapping("/user/admin/product")
     public String getProducts(Model model){
@@ -103,6 +112,17 @@ public class ProductController {
     }
 
     // @Secured("ADMIN")
+    // @GetMapping("/user/admin/product/update/{id}")
+    // public String getUpdateProducts(Model model){
+    //     model.addAttribute("products", productService.listAll());
+    //     model.addAttribute("deparments", deparmentService.listAll());
+    //     model.addAttribute("suppliers", supplierService.listAll());
+    //     model.addAttribute("makers", makerService.listAll());
+    //     return "product";
+    
+    // }
+
+    // @Secured("ADMIN")
     @PostMapping("/user/admin/product")
     public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam("image") MultipartFile image) throws IOException{
         productService.addProduct(name, description, price, deparmentId, supplierId, makerId, image);
@@ -110,7 +130,7 @@ public class ProductController {
     }
 
     // @Secured("ADMIN")
-    @PostMapping("/user/admin/product/{id}")
+    @PostMapping("/user/admin/product/update/{id}")
     public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam ("image") MultipartFile image) throws IOException {
         this.productService.updateProduct(id, name, description, price, deparmentId, supplierId, makerId, image);
         return "redirect:/user/admin/product";
