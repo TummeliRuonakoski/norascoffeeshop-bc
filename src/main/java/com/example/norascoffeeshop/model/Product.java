@@ -24,15 +24,9 @@ public class Product  extends AbstractPersistable<Long>{
     
     private String description;
     // @Type(type = "org.hibernate.type.BinaryType")
-    // @Basic(fetch = FetchType.LAZY)
-    // @Column(name = "image", length = 1000)
-    // @Lob
-    // private String image;
-    // @Type(type = "org.hibernate.type.BinaryType")
     // @Basic(fetch = FetchType.EAGER)
     @Lob
     private byte[] image;
-
     private String name;
     private Double price;
 
