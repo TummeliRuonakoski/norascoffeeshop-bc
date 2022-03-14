@@ -62,18 +62,18 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
-    public void addProduct(String description, MultipartFile image, String name, Double price, Long deparmentId, Long supplierId, Long makerId) throws IOException {
+    public void addProduct(String name, String description, Double price, Long deparmentId, Long supplierId, Long makerId, MultipartFile image) throws IOException {
         Deparment deparment = deparmentRepository.getById(deparmentId);
         Supplier supplier = supplierRepository.getById(supplierId);
         Maker maker = makerRepository.getById(makerId);
         Product product = new Product();
-        product.setDescription(description);
-        product.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
         product.setName(name);
+        product.setDescription(description);
         product.setPrice(price);
         product.setDeparment(deparment);
         product.setSupplier(supplier);
         product.setMaker(maker);
+        product.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
         productRepository.save(product);
     }
 
