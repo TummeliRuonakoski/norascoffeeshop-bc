@@ -14,7 +14,6 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <p>Nora's Coffee Shop</p>
-        <a class="navbar-brand" href="#">Navbar</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}">home</a></li>
@@ -22,6 +21,12 @@
             <li class="nav-item"><a class="nav-link" th:href="@{/coffeemachines}">coffee machines</a></li>
             <li class="nav-item"><a class="nav-link" th:href="@{/login}">log in</a></li>
             <li class="nav-item"><a class="nav-link" th:href="@{/user}">profile</a></li>
+            <!-- <li class="nav-item">
+              <form th:action="@{/search}">
+                <input type="text" id="txtSearch"name="keyword"class="form-control">
+                <input @keypress.enter.prevent type="submit" value="search" class="btn form-control">
+              </form>
+            </li> -->
           </ul>
         </div>
       </div>
