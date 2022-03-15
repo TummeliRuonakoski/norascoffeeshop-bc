@@ -86,6 +86,15 @@ public class ProductController {
         return "showproduct";
     }
 
+    @GetMapping("/user/admin/product/{id}")
+    public String getUpdateProduct(Model model, @PathVariable Long id){
+        model.addAttribute("product", productService.getProduct(id));
+        model.addAttribute("deparments", deparmentService.listAll());
+        model.addAttribute("suppliers", supplierService.listAll());
+        model.addAttribute("makers", makerService.listAll());
+        return "product";
+    }
+
     // @Secured("ADMIN")
     @GetMapping("/user/admin/product")
     public String getProducts(Model model){
@@ -93,14 +102,14 @@ public class ProductController {
         model.addAttribute("deparments", deparmentService.listAll());
         model.addAttribute("suppliers", supplierService.listAll());
         model.addAttribute("makers", makerService.listAll());
-        return "product";
+        return "postproduct";
 
     }
 
     // @Secured("ADMIN")
     @PostMapping("/user/admin/product")
     public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam("image") MultipartFile image) throws IOException{
-        productService.addProduct(description, image, name, price, deparmentId, supplierId, makerId);
+        productService.addProduct(name, description, price, deparmentId, supplierId, makerId, image);
         return "redirect:/user/admin/product";
     }
 
@@ -108,14 +117,14 @@ public class ProductController {
     @PostMapping("/user/admin/product/{id}")
     public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam ("image") MultipartFile image) throws IOException {
         this.productService.updateProduct(id, name, description, price, deparmentId, supplierId, makerId, image);
-        return "/user/admin/product";
+        return "redirect:/user/admin/product";
     }
 
     // @Secured("ADMIN")
-    @DeleteMapping("/user/admin/product/delete/{id}")
+    @GetMapping("/user/admin/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         this.productService.deleteProduct(id);
-        return "redirect:/profile";
+        return "redirect:/user/admin/product";
     }
 
 }
