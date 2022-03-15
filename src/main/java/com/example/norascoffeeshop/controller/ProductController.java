@@ -13,9 +13,8 @@ import com.example.norascoffeeshop.model.Product;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,10 +42,27 @@ public class ProductController {
     @Autowired
     private SupplierService supplierService;
 
-    @GetMapping("/")
-    public String topSellers(Model model){
-        Pageable pageable = PageRequest.of(0, 9, Sort.by("productsSold").descending());
-        model.addAttribute("products", this.productService.topSellers(pageable));
+
+    @GetMapping("/index")
+    public String searchProduct(Model model, String keyword){
+        return getAllProducts(0, model, keyword);    
+    }
+
+    @GetMapping("/index/{page}")
+    public String getAllProducts(@PathVariable(name = "page") Integer page, Model model, @Param("keyword") String keyword) {
+        if(keyword != null) {
+            Page<Product> products = productService.getProductPageable(page, 6);
+            model.addAttribute("products", productService.getByKeyword(keyword));
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", products.getTotalPages());
+            model.addAttribute("totalItem", products.getTotalElements());
+        } else {
+            Page<Product> products = productService.getProductPageable(page, 6);
+            model.addAttribute("products", products);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", products.getTotalPages());
+            model.addAttribute("totalItem", products.getTotalElements());
+        }
         return "index";
     }
 
@@ -86,6 +102,7 @@ public class ProductController {
         return "showproduct";
     }
 
+    // @Secured("ADMIN")
     @GetMapping("/user/admin/product/{id}")
     public String getUpdateProduct(Model model, @PathVariable Long id){
         model.addAttribute("product", productService.getProduct(id));
