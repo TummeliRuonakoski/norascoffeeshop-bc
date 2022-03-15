@@ -1,7 +1,6 @@
 package com.example.norascoffeeshop.service;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 import com.example.norascoffeeshop.model.Deparment;
@@ -15,6 +14,7 @@ import com.example.norascoffeeshop.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,10 +34,21 @@ public class ProductService {
     @Autowired 
     private MakerRepository makerRepository;
 
-    public static String imageFolder = "/src/main/resources/static/images/";
 
-    public Page<Product> topSellers(Pageable pageable){
+    public Page<Product> getAllProducts(Pageable pageable){
         return productRepository.findAll(pageable);
+    }
+
+    public Page<Product> getProductPageable(int currentPage, int size) {
+        PageRequest pageable = PageRequest.of(currentPage, size);
+        return productRepository.findAll(pageable);
+    }
+
+    public List<Product> getByKeyword(String keyword){
+        if(keyword != null){
+            return productRepository.findByNameContainingIgnoreCase(keyword);
+        }
+        return productRepository.findAll();
     }
 
     public List<Product> getAllCoffeeMachines(List<Long> coffeemachines){

@@ -8,7 +8,66 @@
 <body>
     <header th:replace="fragments/layout :: banner"></header>
 
+    <section class="container">
 
+        <h2><a th:href="@{/index}">All products</a></h2>
+        <form th:action="@{/index}">
+            <input type="text" id="txtSearch"name="keyword"class="form-control">
+            <input @keypress.enter.prevent type="submit" value="search" class="btn form-control">
+          </form>
+
+        <section>
+
+            <div class="card" th:each="product : ${products}">
+                <img
+                    th:src="@{/product/{id}/image(id=${product.id})}"
+                    class="image"
+                    alt="${product.name}"
+                />
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p>
+                        <span class="card-text" th:text="${product.price}"></span> €
+                    </p>
+                    <a
+                    th:href="@{/product/{id}(id=${product.id})}"
+                    class="btn btn-primary"
+                    >Show more</a>
+                </div>
+            </div>
+        </section>
+        <section>
+'            <p class="float-left mt-1">Total Product: [[${totalItem}]]</p>
+'
+            <ul class="pagination d-flex justify-content-end">
+              <li th:if="${currentPage !=0}" class="page-item">
+                <a
+                  class="page-link"
+                  th:href="@{'/index/{page}'+${currentPage-1}} "
+                  >Previous</a
+                >
+              </li>
+
+              <li
+                th:each="i:${#numbers.sequence(1, totalPages)}"
+                th:classappend="${currentPage==i-1 ? 'active' : ''}"
+                class="page-item"
+              >
+                <a class="page-link" th:href="@{'/index/{page}'+${i-1}} "
+                  >[[${i}]]</a
+                >
+              </li>
+
+              <li th:if="${currentPage+1 != totalPages}" class="page-item">
+                <a
+                  class="page-link"
+                  th:href="@{'/index/{page}'+${currentPage+1}} "
+                  >Next</a
+                >
+              </li>
+            </ul>        
+        </section>
+      </section>
     <footer th:replace="fragments/layout :: footer"></footer>
 </body>
 
