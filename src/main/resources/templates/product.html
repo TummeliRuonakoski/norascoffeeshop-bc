@@ -9,30 +9,99 @@
   <header th:replace="fragments/layout :: banner"></header>
 
   <section>
-    <h1 th:text="'Edit by ' + ${product.name}">name</h1>
+    <h1 th:text="'Edit ' + ${product.name}">name</h1>
     <article>
       <h2>The product's current description</h2>
       <p th:text="${product.description}"></p>
       <h2>The product's current price</h2>
       <p th:text="${product.price}"></p>
       <h2>The product's current department</h2>
-      <!-- <p th:text="${product.department.name}"></p> -->
-
+      <p th:text="${product.deparment.name}"></p>
+      <h2>The product's current supplier</h2>
+      <p th:text="${product.supplier.name}"></p>
+      <h2>The product's current maker</h2>
+      <p th:text="${product.maker.name}"></p>
+      <h2>The product's current image</h2>
+      <img th:src="@{/product/{id}/image(id=${product.id})}" class="image" alt="${product.name}">
     </article>
 
-    <form th:action="@{'/user/admin/product/update/{id}'(id=${product.id})}" method="post">
+    <form th:action="@{'/user/admin/product/{id}'(id=${product.id})}" method="post" enctype="multipart/form-data">
 
       <div class="form-floating">
-        <input type="text" class="form-control" name="name" placeholder="The name of the product" />
+        <input
+          type="text"
+          class="form-control"
+          id="floatingProductName"
+          name="name"
+          placeholder="the name of the product"
+        />
         <label for="floatingProductName">The name of the product</label>
       </div>
+
       <div class="form-floating">
-        <input type="text" class="form-control" name="description" placeholder="The description of the product" />
-        <label for="floatingDescription">The description of the product</label>
+        <input
+          type="text"
+          name="description"
+          id="floatingDescription"
+          class="form-control"
+          placeholder="description"
+        ></input>
+        <label for="floatingDescription">Description</label>
       </div>
+
       <div class="form-floating">
-        <input type="text" class="form-control" name="name" placeholder="The price of the product" />
-        <label for="floatingPrice">The price of the product</label>
+        <input
+          type="text"
+          class="form-control"
+          id="floatingPrice"
+          name="price"
+          placeholder="Product price"
+        />
+        <label for="floatingPrice">Product price</label>
+      </div>
+
+      <div class="form-floating">
+        <select class="form-select" th:name="deparmentId">
+          <option selected>Deparment</option>
+          <option
+            th:each="deparment : ${deparments}"
+            th:text="${deparment.name}"
+            th:value="${deparment.id}">
+          </option>
+        </select>
+      </div>
+
+      <div class="form-floating">
+        <select class="form-select" th:name="supplierId">
+          <option selected>Supplier</option>
+          <option
+            th:each="supplier : ${suppliers}"
+            th:text="${supplier.name}"
+            th:value="${supplier.id}"
+          >
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-floating">
+        <select class="form-select" th:name="makerId">
+          <option selected>Maker</option>
+          <option
+            th:each="maker : ${makers}"
+            th:text="${maker.name}"
+            th:value="${maker.id}"
+          >
+          </option>
+        </select>
+      </div>
+
+      <div class="form-floating" enctype="multipart/form-data">
+        <input
+          type="file"
+          id="image"
+          name="image"
+        />
+        <label for="floatingImage">Select an image</label>
       </div>
 
       <input type="submit" value="Add"></input>

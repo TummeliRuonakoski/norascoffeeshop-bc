@@ -82,7 +82,7 @@
 
         <div class="form-floating">
           <select class="form-select" th:name="deparmentId">
-            <option selected>Deparments</option>
+            <option selected>Deparment</option>
             <option
               th:each="deparment : ${deparments}"
               th:text="${deparment.name}"
@@ -105,7 +105,7 @@
         
         <div class="form-floating">
           <select class="form-select" th:name="makerId">
-            <option selected>makers</option>
+            <option selected>Maker</option>
             <option
               th:each="maker : ${makers}"
               th:text="${maker.name}"
