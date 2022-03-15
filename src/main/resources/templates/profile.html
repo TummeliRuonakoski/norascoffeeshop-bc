@@ -3,6 +3,7 @@
 <head>
   <th:block th:include="fragments/layout :: head" />
   <title>Nora's Coffee Shop - Profile</title>
+  <link rel="stylesheet" th:href="@{/css/form.css}">
 </head>
 
 <body>
@@ -39,8 +40,7 @@
   </section>
 
   <section class="admin" sec:authorize="hasAuthority('ADMIN')">
-    <aside>
-      <h1>ADMIN</h1>
+      <h2>Only for admins</h2>
 
       <a th:href="@{/user/admin/supplier}">
         <h3>Supplier</h3>
@@ -49,11 +49,12 @@
         <h3>Makers</h3>
       </a>
       <a th:href="@{/user/admin/product}"><h3>Products</h3></a>
-    </aside>
+  </section>
 
-    <section>
-      <h2>Only for admins</h2>
-    </section>
+  <section>
+    <form method="post" action="#" th:action="@{/logout}">
+      <button class="form-button" type="submit">Logoff</button>
+    </form>
   </section>
 
   <footer th:replace="fragments/layout :: footer"></footer>
