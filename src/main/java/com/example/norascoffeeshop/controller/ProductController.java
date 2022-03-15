@@ -18,7 +18,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,7 +101,7 @@ public class ProductController {
         return "showproduct";
     }
 
-    // @Secured("ADMIN")
+    @Secured("ADMIN")
     @GetMapping("/user/admin/product/{id}")
     public String getUpdateProduct(Model model, @PathVariable Long id){
         model.addAttribute("product", productService.getProduct(id));
@@ -112,7 +111,7 @@ public class ProductController {
         return "product";
     }
 
-    // @Secured("ADMIN")
+    @Secured("ADMIN")
     @GetMapping("/user/admin/product")
     public String getProducts(Model model){
         model.addAttribute("products", productService.listAll());
@@ -123,21 +122,21 @@ public class ProductController {
 
     }
 
-    // @Secured("ADMIN")
+    @Secured("ADMIN")
     @PostMapping("/user/admin/product")
     public String createProduct(@RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam("image") MultipartFile image) throws IOException{
         productService.addProduct(name, description, price, deparmentId, supplierId, makerId, image);
         return "redirect:/user/admin/product";
     }
 
-    // @Secured("ADMIN")
+    @Secured("ADMIN")
     @PostMapping("/user/admin/product/{id}")
     public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String description, @RequestParam Double price, @RequestParam Long deparmentId, @RequestParam Long supplierId, @RequestParam Long makerId, @RequestParam ("image") MultipartFile image) throws IOException {
         this.productService.updateProduct(id, name, description, price, deparmentId, supplierId, makerId, image);
         return "redirect:/user/admin/product";
     }
 
-    // @Secured("ADMIN")
+    @Secured("ADMIN")
     @GetMapping("/user/admin/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         this.productService.deleteProduct(id);

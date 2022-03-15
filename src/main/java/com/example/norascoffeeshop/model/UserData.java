@@ -1,7 +1,11 @@
 package com.example.norascoffeeshop.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.validation.constraints.Email;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -25,4 +29,8 @@ public class UserData  extends AbstractPersistable<Long>{
     private String email;
     private String password;
     private Boolean isAdmin;
+
+    
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> authorities;
 }

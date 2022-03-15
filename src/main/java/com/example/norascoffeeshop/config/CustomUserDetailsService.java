@@ -1,6 +1,8 @@
 package com.example.norascoffeeshop.config;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.example.norascoffeeshop.model.UserData;
 import com.example.norascoffeeshop.repository.UserRepository;
@@ -24,6 +26,12 @@ public class CustomUserDetailsService implements UserDetailsService{
         if(customer == null){
             throw new UsernameNotFoundException("No such user " + username);
         }
+
+         
+        List<SimpleGrantedAuthority> auth = new ArrayList<>();
+        customer.getAuthorities().forEach((role) -> {
+            auth.add(new SimpleGrantedAuthority(role));
+        });
 
         return new org.springframework.security.core.userdetails.User(
             customer.getUsername(),
