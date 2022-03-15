@@ -12,8 +12,4 @@ public class DefaultController {
         return "redirect:/index";
     }
 
-    // @GetMapping("/index")
-    // public String getIndexPage() {
-    //     return "index";
-    // }
 }

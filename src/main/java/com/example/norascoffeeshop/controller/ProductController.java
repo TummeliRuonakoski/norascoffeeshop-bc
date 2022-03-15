@@ -1,7 +1,6 @@
 package com.example.norascoffeeshop.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,10 +13,7 @@ import com.example.norascoffeeshop.model.Product;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -26,7 +22,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,25 +42,11 @@ public class ProductController {
     @Autowired
     private SupplierService supplierService;
 
-    // @RequestMapping("/index")
-    // public String indexPage(Model model) {
-    //     return getAllProducts(model);
-    // }
 
     @GetMapping("/index")
     public String searchProduct(Model model, String keyword){
         return getAllProducts(0, model, keyword);    
     }
-
-    // @GetMapping("/index")
-    // public String testGetAll(Model model){
-    //     model.addAttribute("products", productService.listAll());
-    //     // model.addAttribute("deparments", deparmentService.listAll());
-    //     // model.addAttribute("suppliers", supplierService.listAll());
-    //     // model.addAttribute("makers", makerService.listAll());
-    //     return "index";
-    // }
-
 
     @GetMapping("/index/{page}")
     public String getAllProducts(@PathVariable(name = "page") Integer page, Model model, @Param("keyword") String keyword) {
@@ -120,9 +101,6 @@ public class ProductController {
         model.addAttribute("product", productService.getProduct(id));
         return "showproduct";
     }
-
-
-    
 
 
     // @Secured("ADMIN")
