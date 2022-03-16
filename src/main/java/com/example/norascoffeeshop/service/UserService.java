@@ -32,7 +32,7 @@ public class UserService {
         return userRepository.getById(id);
     }
 
-    public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isAdmin){
+    public void addUser(String name, String address, String phonenumber, String email, String password, Boolean isEnabled){
         Role role = roleRepository.findByName("USER");
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
@@ -43,9 +43,8 @@ public class UserService {
         user.setPhonenumber(phonenumber);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
-        user.setEnabled(isAdmin);
+        user.setEnabled(isEnabled);
         user.setRoles(roleSet);
-        // user.setIsAdmin(isAdmin);
         userRepository.save(user);
     }
 
