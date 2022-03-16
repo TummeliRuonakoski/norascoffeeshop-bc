@@ -11,8 +11,8 @@
 
   <section class="user">
     <h1>Userpage</h1>
-    <section>
-      <div th:each="user: ${userdata}">
+    <section th:each="user: ${userdata}">
+      <div>
         <h1 th:text="${user.name}">user</h1>
       </div>
       <table>
@@ -38,7 +38,6 @@
       </table>
     </section>
   </section>
-
   <section class="admin" sec:authorize="hasAuthority('ADMIN')">
       <h2>Only for admins</h2>
 

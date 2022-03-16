@@ -1,11 +1,17 @@
 package com.example.norascoffeeshop.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.persistence.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -28,9 +34,15 @@ public class UserData  extends AbstractPersistable<Long>{
     @Email
     private String email;
     private String password;
-    private Boolean isAdmin;
+    private boolean enabled;
 
-    
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> authorities;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+            )
+    private Set<Role> roles = new HashSet<>();
+ 
+
 }

@@ -55,7 +55,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String createUser(@RequestParam String name, @RequestParam String address, @RequestParam String phonenumber, @RequestParam String email, @RequestParam String password){
-        this.userService.addUser(name, address, phonenumber, email, password, false);
+        this.userService.addUser(name, address, phonenumber, email, password, true);
         return "redirect:/index";
     }
 

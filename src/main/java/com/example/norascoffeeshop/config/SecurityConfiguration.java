@@ -30,8 +30,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
         http.authorizeRequests()
         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-        .antMatchers("/h2-console","/h2-console/**").permitAll() 
-        .antMatchers("/", "/register", "/forgotpassword", "/index", "/index/*").permitAll()
+        .antMatchers("/h2-console","/h2-console/**").permitAll()
+        .antMatchers(HttpMethod.GET, "/css/**","/images/**", "/js/**","/fonts/**", "/favicon.ico").permitAll() 
+        .antMatchers("/","/**", "/register", "/forgotpassword", "/index", "/index/**").permitAll()
         .antMatchers("/product/*").permitAll()
         .antMatchers("/consumerproducts", "/consumerproducts/*").permitAll()
         .antMatchers("/coffeemachines", "/coffeemachines/*").permitAll()        
