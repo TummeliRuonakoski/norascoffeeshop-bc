@@ -9,13 +9,14 @@
     <section>
         <h1 th:text="${product.name}"></h1>
         <div class="card">
-            <img
-                th:src="@{/product/{id}/image(id=${product.id})}"
-                class="image"
-                alt="${product.name}"
-            />
+            <figure>
+              <img
+                  th:src="@{/product/{id}/image(id=${product.id})}"
+                  class="imagepage"
+                  alt="${product.name}"
+              />
+            </figure>
             <div class="card-body">
-                <h5 class="card-title" th:text="${product.name}"></h5>
                 <p>
                     <span class="card-text" th:text="${product.price}"></span> €
                 </p>

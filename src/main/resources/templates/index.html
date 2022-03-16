@@ -10,22 +10,26 @@
 
     <section class="container">
 
-        <h2><a th:href="@{/index}">All products</a></h2>
-        <form th:action="@{/index}">
-            <input type="text" id="txtSearch"name="keyword"class="form-control">
-            <input @keypress.enter.prevent type="submit" value="search" class="btn form-control">
+        <section class="searchSection">
+          <h1><a th:href="@{/index}">All products</a></h1>
+          <form th:action="@{/index}">
+              <input type="text" id="txtSearch"name="keyword"class="form-control searchbox">
+              <input @keypress.enter.prevent type="submit" value="search" class="btn form-control">
           </form>
+        </section>
 
         <section>
 
             <div class="card" th:each="product : ${products}">
-                <img
-                    th:src="@{/product/{id}/image(id=${product.id})}"
-                    class="image"
-                    alt="${product.name}"
-                />
+                <figure>
+                  <img
+                      th:src="@{/product/{id}/image(id=${product.id})}"
+                      class="image"
+                      alt="${product.name}"
+                  />
+                </figure>
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <h5 class="card-title title" th:text="${product.name}"></h5>
                     <p>
                         <span class="card-text" th:text="${product.price}"></span> €
                     </p>
@@ -37,8 +41,7 @@
             </div>
         </section>
         <section>
-'            <p class="float-left mt-1">Total Product: [[${totalItem}]]</p>
-'
+            <p class="float-left mt-1">Total Product: [[${totalItem}]]</p>
             <ul class="pagination d-flex justify-content-end">
               <li th:if="${currentPage !=0}" class="page-item">
                 <a
