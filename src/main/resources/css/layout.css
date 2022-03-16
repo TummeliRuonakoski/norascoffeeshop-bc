@@ -30,9 +30,18 @@
       list-style-type: none;
   }
 
-  #bannerImage{
+  figure {
+    display: block;
+  }
+
+  figure img {
+    max-width: 100%;
+  }
+  
+
+  /* #bannerImage{
     width: 100%;
     height: auto;
-  }
+  } */
   
   
