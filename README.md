@@ -7,7 +7,7 @@ norascoffeeshop-bc is a Business College Helsinki school project to create a Nor
 1. Clone the project into your local device
 2. Start the project by running "mvn spring-boot:run" in the project root folder
 3. Navigate to the project URL http://localhost:8080
-4. Register a user from the login page
+4. Register a user and an admin user from the login page
 5. Access the local h2 database from http://localhost:8080/h2-console
 6. Manually add the following departments to the database:
 ```h2-console
@@ -20,6 +20,15 @@ insert into DEPARMENT values (6, 2,'filters');
 insert into DEPARMENT values (7, 2,'coffee');
 insert into DEPARMENT values (8, 7,'espresso');
 insert into DEPARMENT values (9, 7,'filter coffees');
+```
+7. Manually add the following roles to the database:
+```h2-console
+insert into ROLE values (1, 'ADMIN');
+insert into ROLE values (2, 'USER');
+```
+8. Manually set one of the added users as admin:
+```h2-console
+update USERS_ROLES set role_id = 1 where user_id = 1;
 ```
 
 ## Usage
