@@ -8,9 +8,10 @@
 <body>
     <header th:replace="fragments/layout :: banner"></header>
 
-    <h1>Consumer products</h1>
 
     <section class="container">
+        <h1>Consumer products</h1>
+
         <div class="card" th:each="consumerproduct : ${consumerproducts}">
             <figure>
                 <img

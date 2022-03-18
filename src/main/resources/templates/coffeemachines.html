@@ -8,9 +8,10 @@
 <body>
     <header th:replace="fragments/layout :: banner"></header>
 
-    <h1>Coffee machines</h1>
 
     <section class="container">
+        <h1>Coffee machines</h1>
+
         <div class="card" th:each="coffeemachine : ${coffeemachines}">
             <figure>
                 <img

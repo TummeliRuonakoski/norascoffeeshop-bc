@@ -1,11 +1,14 @@
 html {
   font-size: 62.5%;
+
 }
 
 body {
   padding: 10px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
+  background-color: #D1D6D6;
+
 }
 
 h1{
@@ -41,6 +44,19 @@ h5{
   text-transform: uppercase;
   color: #23245d;
 
+}
+
+a{
+  color: #23245d;
+}
+
+.page-item.active .page-link {
+  background-color: #23245d;
+  border-color: #23245d;
+}
+
+.page-link{
+  color: #23245d;
 }
 
 
@@ -119,6 +135,10 @@ h5{
 
   .card, .searchbox{
     border-color: #3d1704;
+  }
+
+  .fa-brands{
+    color: #3d1704;
   }
 
 
