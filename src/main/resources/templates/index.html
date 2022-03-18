@@ -46,7 +46,7 @@
               <li th:if="${currentPage !=0}" class="page-item">
                 <a
                   class="page-link"
-                  th:href="@{'/index/{page}'+${currentPage-1}} "
+                  th:href="@{'/index/page/'+${currentPage-1}} "
                   >Previous</a
                 >
               </li>
@@ -56,7 +56,7 @@
                 th:classappend="${currentPage==i-1 ? 'active' : ''}"
                 class="page-item"
               >
-                <a class="page-link" th:href="@{'/index/{page}'+${i-1}} "
+                <a class="page-link" th:href="@{'/index/page/'+${i-1}} "
                   >[[${i}]]</a
                 >
               </li>
@@ -64,7 +64,7 @@
               <li th:if="${currentPage+1 != totalPages}" class="page-item">
                 <a
                   class="page-link"
-                  th:href="@{'/index/{page}'+${currentPage+1}} "
+                  th:href="@{'/index/page/'+${currentPage+1}} "
                   >Next</a
                 >
               </li>

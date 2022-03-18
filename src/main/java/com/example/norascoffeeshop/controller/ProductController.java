@@ -47,8 +47,8 @@ public class ProductController {
         return getAllProducts(0, model, keyword);    
     }
 
-    @GetMapping("/index/{page}")
-    public String getAllProducts(@PathVariable(name = "page") Integer page, Model model, @Param("keyword") String keyword) {
+    @GetMapping("/index/page/{no}")
+    public String getAllProducts(@PathVariable(name = "no") Integer page, Model model, @Param("keyword") String keyword) {
         if(keyword != null) {
             Page<Product> products = productService.getProductPageable(page, 6);
             model.addAttribute("products", productService.getByKeyword(keyword));
