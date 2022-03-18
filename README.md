@@ -2,6 +2,19 @@
 
 norascoffeeshop-bc is a Business College Helsinki school project to create a Nora's coffee shop webshop with Spring Boot.
 
+In this project users can:
+- register an account
+- change forgotten password
+- edit their profile info
+- look at products from different categories and their info
+- search for products from the product list
+- logoff from the page
+
+In addition an admin user can add, remove and edit info regarding:
+- products
+- product makers
+- product suppliers
+
 ## Tools used in the project
 
 - [Java](https://www.java.com/en/)
