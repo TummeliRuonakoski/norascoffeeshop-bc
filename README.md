@@ -2,6 +2,14 @@
 
 norascoffeeshop-bc is a Business College Helsinki school project to create a Nora's coffee shop webshop with Spring Boot.
 
+## Tools used in the project
+
+- [Java](https://www.java.com/en/)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Maven](https://maven.apache.org/)
+- [H2-database](https://www.h2database.com/html/main.html)
+- [Hibernate](https://hibernate.org/)
+
 ## Installation
 
 1. Clone the project into your local device
